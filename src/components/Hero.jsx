@@ -85,7 +85,7 @@ export default function Hero({ team }) {
           alt={`${team.name} F1 Car`} 
           className="hero-car" 
           key={team.id}
-          style={{ filter: `hue-rotate(${team.hue || 0}deg) drop-shadow(-20px 20px 30px rgba(0,0,0,0.8))` }} 
+          style={{ filter: `${team.filter || ''} drop-shadow(-20px 20px 30px rgba(0,0,0,0.8))` }} 
         />
         <div className="car-gradient-mask"></div>
       </div>

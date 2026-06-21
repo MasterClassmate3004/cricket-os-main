@@ -6,7 +6,7 @@ export const teams = [
         accent: '#CC0000', 
         dark: '#000814',
         imageUrl: '/assets/hero-car.png',
-        hue: 240
+        filter: 'hue-rotate(60deg) saturate(1.2)' // Turns Cyan into Deep Blue
     },
     { 
         id: 'mercedes',
@@ -15,7 +15,7 @@ export const teams = [
         accent: '#00A19B', 
         dark: '#000000',
         imageUrl: '/assets/hero-car.png',
-        hue: 150
+        filter: 'hue-rotate(0deg) saturate(0.5)' // Keeps Teal/Cyan but makes it more silver/desaturated
     },
     { 
         id: 'ferrari',
@@ -24,7 +24,7 @@ export const teams = [
         accent: '#FF2800', 
         dark: '#110000',
         imageUrl: '/assets/hero-car.png',
-        hue: 330
+        filter: 'hue-rotate(180deg) saturate(2)' // Turns Cyan into Red
     },
     { 
         id: 'mclaren',
@@ -33,7 +33,7 @@ export const teams = [
         accent: '#474747', 
         dark: '#0F0F0F',
         imageUrl: '/assets/hero-car.png',
-        hue: 30
+        filter: 'hue-rotate(210deg) saturate(1.5)' // Turns Cyan into Papaya Orange
     },
     { 
         id: 'aston',
@@ -42,7 +42,7 @@ export const teams = [
         accent: '#CEDC00', 
         dark: '#0A1A17',
         imageUrl: '/assets/hero-car.png',
-        hue: 120
+        filter: 'hue-rotate(290deg) saturate(1.2)' // Turns Cyan into British Racing Green
     },
     { 
         id: 'alpine',
@@ -51,7 +51,7 @@ export const teams = [
         accent: '#FD4BC7', 
         dark: '#051220',
         imageUrl: '/assets/hero-car.png',
-        hue: 280
+        filter: 'hue-rotate(130deg) saturate(1.5)' // Turns Cyan into Pink/Magenta
     },
     { 
         id: 'williams',
@@ -60,7 +60,7 @@ export const teams = [
         accent: '#00A0FF', 
         dark: '#000B20',
         imageUrl: '/assets/hero-car.png',
-        hue: 210
+        filter: 'hue-rotate(30deg) saturate(1)' // Turns Cyan into Light Blue
     },
     { 
         id: 'vcarb',
@@ -69,7 +69,7 @@ export const teams = [
         accent: '#FFFFFF', 
         dark: '#00111A',
         imageUrl: '/assets/hero-car.png',
-        hue: 200
+        filter: 'hue-rotate(50deg) saturate(0.8)' // Turns Cyan into deeper Blue/White
     },
     { 
         id: 'sauber',
@@ -78,7 +78,7 @@ export const teams = [
         accent: '#000000', 
         dark: '#050505',
         imageUrl: '/assets/hero-car.png',
-        hue: 100
+        filter: 'hue-rotate(270deg) saturate(1.5)' // Turns Cyan into Neon Green
     },
     { 
         id: 'haas',
@@ -87,7 +87,7 @@ export const teams = [
         accent: '#E6002B', 
         dark: '#111111',
         imageUrl: '/assets/hero-car.png',
-        hue: 0
+        filter: 'hue-rotate(180deg) saturate(1.2)' // Turns Cyan into Red/Black
     }
 ];
 
