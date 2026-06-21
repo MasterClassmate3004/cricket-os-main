@@ -1,0 +1,27 @@
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rear Tire -->
+  <circle cx="120" cy="140" r="35" fill="#222"/>
+  <circle cx="120" cy="140" r="15" fill="#555"/>
+  <circle cx="120" cy="140" r="10" fill="#00E676"/>
+  
+  <!-- Front Tire -->
+  <circle cx="450" cy="140" r="30" fill="#222"/>
+  <circle cx="450" cy="140" r="12" fill="#555"/>
+  <circle cx="450" cy="140" r="8" fill="#00E676"/>
+  
+  <!-- Chassis Base -->
+  <path d="M80 140 L80 110 L150 90 L260 70 L340 70 L480 110 L540 135 L540 140 Z" fill="#E0E0E0"/>
+  
+  <!-- Rear Wing -->
+  <path d="M60 110 L90 110 L100 60 L60 60 Z" fill="#E0E0E0"/>
+  <rect x="50" y="55" width="60" height="8" fill="#00E676"/>
+  
+  <!-- Front Wing -->
+  <path d="M480 135 L560 135 L560 140 L480 140 Z" fill="#00E676"/>
+  
+  <!-- Halo / Cockpit -->
+  <path d="M250 70 L280 45 L320 45 L340 70 Z" fill="#111"/>
+  
+  <!-- Driver Helmet -->
+  <circle cx="295" cy="55" r="12" fill="#00E676"/>
+</svg>

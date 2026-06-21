@@ -1,0 +1,121 @@
+.hero-container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.top-nav {
+  position: absolute;
+  top: 0; left: 0; width: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.gear-icon {
+  animation: spinGear 6s linear infinite;
+}
+
+@keyframes spinGear {
+  100% { transform: rotate(360deg); }
+}
+
+.status-bar {
+  font-family: var(--font-mono);
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Push text to background */
+.bg-text {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  font-size: 15vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  z-index: 0;
+  line-height: 0.8;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Ensure the glass panel makes text readable without overlapping the car */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 45%;
+  padding-left: 4rem;
+}
+
+.main-panel {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  animation: slideIn 1s ease-out;
+}
+
+.hero-heading {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* The car stays securely on the right side */
+.hero-car-wrapper {
+  position: absolute;
+  right: -5%;
+  bottom: 0;
+  width: 65%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  z-index: 5;
+}
+
+.hero-car {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  filter: drop-shadow(-20px 20px 30px rgba(0,0,0,0.8));
+}
+
+/* Mask to blend non-transparent images seamlessly into the dark background */
+.car-gradient-mask {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg-dark) 0%, transparent 20%),
+              linear-gradient(to top, var(--bg-dark) 0%, transparent 20%);
+  pointer-events: none;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 1024px) {
+  .hero-content { width: 100%; padding: 2rem; margin-top: 10vh; }
+  .hero-car-wrapper { width: 100%; right: 0; opacity: 0.3; z-index: 0; }
+  .bg-text { font-size: 20vw; top: 25%; }
+  .hero-heading { font-size: 3rem; }
+}

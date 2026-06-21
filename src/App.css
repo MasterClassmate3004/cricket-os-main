@@ -1,0 +1,9 @@
+/* App specific styles, most styles are in index.css and component css files */
+.app-fade-in {
+  opacity: 0;
+  animation: fadeInApp 1s ease-out forwards;
+}
+
+@keyframes fadeInApp {
+  to { opacity: 1; }
+}
