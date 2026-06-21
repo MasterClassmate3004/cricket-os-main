@@ -3,828 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RaceOS - The Engineer's Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Michroma&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1E3050;
-            --secondary: #FFD800;
-            --accent: #FF0000;
-            --bg-dark: #0a0a0a;
-            --bg-light: #1a1a1a;
-            --text-light: #FFFFFF;
-            --text-muted: #999999;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
-            font-family: 'Michroma', 'Courier New', monospace;
-            color: var(--text-light);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Theme Selector */
-        .theme-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 20px;
-            border: 2px solid var(--primary);
-            border-radius: 4px;
-            backdrop-filter: blur(10px);
-        }
-
-        .theme-selector label {
-            color: var(--text-muted);
-            font-size: 0.9em;
-            margin-right: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .theme-selector select {
-            background: var(--primary);
-            color: var(--text-light);
-            border: 1px solid var(--secondary);
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-family: 'Michroma', monospace;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .theme-selector select:hover {
-            background: var(--secondary);
-            color: var(--primary);
-            box-shadow: 0 0 15px var(--secondary);
-        }
-
-        .theme-selector select option {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            animation: fadeOutLoading 4s ease-out forwards;
-        }
-
-        @keyframes fadeOutLoading {
-            0% {
-                opacity: 1;
-                visibility: visible;
-            }
-            85% {
-                opacity: 1;
-                visibility: visible;
-            }
-            100% {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .f1-animation {
-            width: 400px;
-            height: 200px;
-            position: relative;
-            margin: 0 auto 40px;
-        }
-
-        /* F1 Car */
-        .f1-car {
-            position: absolute;
-            width: 200px;
-            height: 40px;
-            bottom: 60px;
-            left: 50px;
-            animation: carRace 3s ease-in-out infinite;
-        }
-
-        .car-body {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 70%, var(--secondary) 100%);
-            clip-path: polygon(0% 50%, 15% 20%, 85% 20%, 100% 50%, 85% 80%, 15% 80%);
-            position: relative;
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        .car-wheel {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #333;
-            border: 2px solid var(--secondary);
-            border-radius: 50%;
-            bottom: -25px;
-        }
-
-        .car-wheel.front {
-            right: 30px;
-            animation: wheelSpin 0.5s linear infinite;
-        }
-
-        .car-wheel.rear {
-            left: 30px;
-            animation: wheelSpin 0.5s linear infinite;
-        }
-
-        @keyframes wheelSpin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes carRace {
-            0% {
-                left: -50px;
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            50% {
-                left: 150px;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 450px;
-                opacity: 0;
-            }
-        }
-
-        /* Speed Lines */
-        .speed-line {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-            width: 100px;
-            bottom: 70px;
-            animation: speedPass 1.5s ease-in-out infinite;
-        }
-
-        .speed-line:nth-child(2) {
-            width: 80px;
-            animation-delay: 0.3s;
-            opacity: 0.6;
-        }
-
-        .speed-line:nth-child(3) {
-            width: 60px;
-            animation-delay: 0.6s;
-            opacity: 0.4;
-        }
-
-        @keyframes speedPass {
-            0% {
-                left: -100px;
-            }
-            100% {
-                left: 400px;
-            }
-        }
-
-        .loading-text {
-            color: var(--text-light);
-            font-family: 'Orbitron', monospace;
-            font-size: 2em;
-            margin-top: 20px;
-            letter-spacing: 3px;
-            font-weight: 700;
-            text-transform: uppercase;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.6;
-                text-shadow: 0 0 10px var(--primary);
-            }
-            50% {
-                opacity: 1;
-                text-shadow: 0 0 30px var(--secondary);
-            }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 100px;
-            padding-bottom: 40px;
-            border-bottom: 3px solid var(--primary);
-            animation: slideInDown 0.8s ease-out;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 4.5em;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 0 30px var(--primary), 0 0 60px var(--accent);
-        }
-
-        .tagline {
-            font-size: 1.5em;
-            color: var(--text-muted);
-            font-style: italic;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .intro-section {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 50px;
-            border-radius: 0;
-            margin-bottom: 80px;
-            border-left: 6px solid var(--secondary);
-            border-right: 3px solid var(--primary);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px var(--primary);
-            animation: slideInWithCar 0.8s ease-out 0.2s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .intro-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-            animation: speedLineTop 2s ease-in-out infinite;
-        }
-
-        @keyframes speedLineTop {
-            0%, 100% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInWithCar {
-            from {
-                opacity: 0;
-                transform: translateX(-60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .intro-section h2 {
-            font-family: 'Orbitron', monospace;
-            color: var(--secondary);
-            font-size: 2.8em;
-            margin-bottom: 30px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .intro-section p {
-            font-size: 1.1em;
-            color: var(--text-light);
-            line-height: 1.9;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        .features-section {
-            margin-bottom: 100px;
-        }
-
-        .features-section h3 {
-            font-family: 'Orbitron', monospace;
-            color: var(--secondary);
-            font-size: 3em;
-            margin-bottom: 60px;
-            font-weight: 900;
-            text-align: center;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px var(--primary);
-            animation: slideInDown 0.8s ease-out 0.4s both;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .feature-card {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border: 2px solid var(--primary);
-            border-top: 4px solid var(--secondary);
-            border-right: 4px solid var(--accent);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), inset 0 0 15px var(--primary);
-            transition: all 0.3s ease;
-            animation: slideInWithCar 0.8s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-            opacity: 0.1;
-            animation: carPass 3s ease-in-out infinite;
-        }
-
-        @keyframes carPass {
-            0% {
-                left: -100%;
-            }
-            50% {
-                left: 100%;
-            }
-            100% {
-                left: -100%;
-            }
-        }
-
-        .feature-card:nth-child(1) {
-            animation-delay: 0.6s;
-        }
-
-        .feature-card:nth-child(2) {
-            animation-delay: 0.8s;
-        }
-
-        .feature-card:nth-child(3) {
-            animation-delay: 1s;
-        }
-
-        .feature-card:nth-child(4) {
-            animation-delay: 1.2s;
-        }
-
-        .feature-card:nth-child(5) {
-            animation-delay: 1.4s;
-        }
-
-        .feature-card:nth-child(6) {
-            animation-delay: 1.6s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-            box-shadow: 0 0 40px var(--secondary), inset 0 0 20px var(--primary);
-        }
-
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            animation: zoomIn 0.6s ease-out forwards;
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .feature-card h4 {
-            font-family: 'Orbitron', monospace;
-            color: var(--secondary);
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .feature-card p {
-            color: var(--text-light);
-            font-size: 1em;
-            line-height: 1.8;
-            letter-spacing: 0.3px;
-        }
-
-        .cta-section {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 70px;
-            margin: 80px 0;
-            border: 3px solid var(--secondary);
-            border-right: 3px solid var(--accent);
-            box-shadow: 0 0 40px var(--primary), inset 0 0 30px var(--primary);
-            animation: slideInUp 0.8s ease-out 2s both;
-            position: relative;
-        }
-
-        .cta-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
-            animation: scan 2s linear infinite;
-        }
-
-        @keyframes scan {
-            0% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-section h3 {
-            font-family: 'Orbitron', monospace;
-            color: var(--secondary);
-            font-size: 2.5em;
-            margin-bottom: 35px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px var(--primary);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
-            padding: 18px 60px;
-            font-size: 1.2em;
-            font-family: 'Orbitron', monospace;
-            text-decoration: none;
-            border: 2px solid var(--secondary);
-            transition: all 0.3s ease;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 0 30px var(--secondary);
-            position: relative;
-            overflow: hidden;
-            animation: racePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes racePulse {
-            0%, 100% {
-                box-shadow: 0 0 20px var(--secondary);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 40px var(--secondary);
-                transform: scale(1.02);
-            }
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            box-shadow: 0 0 50px var(--secondary), 0 0 30px var(--accent);
-            transform: scale(1.05);
-            animation: none;
-        }
-
-        .cta-button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: buttonShine 3s ease-in-out infinite;
-        }
-
-        @keyframes buttonShine {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        .image-container {
-            text-align: center;
-            margin: 80px 0;
-            animation: slideInUp 0.8s ease-out 1.8s both;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            width: 100%;
-            max-height: 600px;
-            object-fit: cover;
-            border: 3px solid var(--secondary);
-            border-right: 3px solid var(--accent);
-            box-shadow: 0 0 40px var(--primary);
-            filter: brightness(0.95);
-            transition: all 0.3s ease;
-        }
-
-        .image-container img:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 0 60px var(--secondary);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 100px;
-            padding-top: 40px;
-            border-top: 3px solid var(--secondary);
-            color: var(--text-muted);
-            font-size: 0.95em;
-            letter-spacing: 1px;
-            animation: slideInUp 0.8s ease-out 2.2s both;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 2.5em;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .intro-section {
-                padding: 30px;
-            }
-
-            .cta-section {
-                padding: 40px 20px;
-            }
-
-            .f1-animation {
-                width: 300px;
-                height: 150px;
-            }
-
-            .loading-text {
-                font-size: 1.3em;
-            }
-
-            .theme-selector {
-                top: 10px;
-                right: 10px;
-                padding: 10px 15px;
-            }
-        }
-    </style>
+    <title>Formula 1 OS | Welcome to the Grid</title>
+    <meta name="description" content="Formula 1 OS - Engineered for Performance. A lightning-fast, highly-aerodynamic operating system experience.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Theme Selector -->
-    <div class="theme-selector">
-        <label for="team-select">Choose Your Team:</label>
-        <select id="team-select">
-            <option value="redbull">Red Bull Racing</option>
-            <option value="ferrari">Scuderia Ferrari</option>
-            <option value="mercedes">Mercedes-AMG</option>
-            <option value="mclaren">McLaren</option>
-            <option value="alpine">Alpine</option>
-            <option value="alfaromeo">Alfa Romeo</option>
-            <option value="williams">Williams</option>
-            <option value="aston">Aston Martin</option>
-        </select>
+    <!-- Boot Sequence -->
+    <div id="boot-screen">
+        <div class="rpm-leds">
+            <div class="led green"></div>
+            <div class="led green"></div>
+            <div class="led green"></div>
+            <div class="led green"></div>
+            <div class="led red"></div>
+            <div class="led red"></div>
+            <div class="led red"></div>
+            <div class="led red"></div>
+            <div class="led blue"></div>
+            <div class="led blue"></div>
+        </div>
+        <div class="boot-text">BOOTING F1 OS...</div>
     </div>
 
-    <!-- Loading Screen with F1 Animation -->
-    <div class="loading-screen">
-        <div class="loading-content">
-            <div class="f1-animation">
-                <div class="speed-line"></div>
-                <div class="speed-line"></div>
-                <div class="speed-line"></div>
-                <div class="f1-car">
-                    <div class="car-body">
-                        <div class="car-wheel front"></div>
-                        <div class="car-wheel rear"></div>
-                    </div>
-                </div>
-            </div>
-            <p class="loading-text">RaceOS Initializing...</p>
+    <!-- Background Speed Trails -->
+    <div class="speed-trails"></div>
+
+    <!-- DRS Notification / Radio Message -->
+    <div id="radio-message" class="radio-message">
+        <span class="radio-icon">📻</span>
+        <div class="radio-text">
+            <strong>TEAM RADIO</strong>
+            <p id="radio-content">Box, box, box.</p>
         </div>
     </div>
 
-    <div class="container">
-        <header>
-            <h1>🏎️ RaceOS</h1>
-            <p class="tagline">The Engineer's High-Performance Platform</p>
-        </header>
+    <div id="drs-indicator">DRS ENABLED</div>
 
-        <div class="intro-section">
-            <h2>Welcome to the Track</h2>
-            <p>
-                Welcome to RaceOS, the ultimate high-performance operating system engineered for the fastest minds in motorsport. 
-                Built to deliver precision, speed, and real-time data intelligence, RaceOS combines telemetry insights, 
-                race analytics, and seamless performance optimization in one superior engineering platform.
-            </p>
-            <p>
-                Whether you're monitoring live race data, analyzing driver performance metrics, or staying connected to the world's 
-                most thrilling competition, RaceOS accelerates every moment of the race to peak performance.
-            </p>
-        </div>
-
-        <div class="features-section">
-            <h3>Engine Performance Features</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h4>Live Telemetry</h4>
-                    <p>Real-time race data streaming with precision lap timing and performance metrics.</p>
+    <!-- Main Content Wrapper -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <nav class="top-nav">
+                <div class="logo">F1 OS</div>
+                <div class="status-bar">
+                    <span>SYS: OPTIMAL</span>
+                    <span>TEMP: 90°C</span>
+                    <span>MODE: PUSH</span>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h4>Performance Analytics</h4>
-                    <p>Advanced telemetry analysis, driver metrics, and car setup optimization.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h4>Custom Dashboards</h4>
-                    <p>Personalized monitoring dashboards for engineers and strategists.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📡</div>
-                    <h4>Track Coverage</h4>
-                    <p>Complete race schedule, pit strategy, weather data, and live positioning.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h4>Precision Tuned</h4>
-                    <p>Engineered interface for maximum efficiency and split-second decisions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏁</div>
-                    <h4>Race Connect</h4>
-                    <p>Connect with teams, engineers, and fellow motorsport enthusiasts worldwide.</p>
+            </nav>
+            
+            <div class="hero-content">
+                <h1 class="glitch" data-text="WELCOME TO THE GRID">WELCOME TO THE GRID</h1>
+                <p class="tagline">Engineered for Performance. Driven by You.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="showRadioMessage('System initialized. Tires are optimal.')">IGNITE WORKSPACE</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('team-selection').scrollIntoView({behavior: 'smooth'})">SELECT CONSTRUCTOR</button>
                 </div>
             </div>
-        </div>
 
-        <div class="image-container">
-            <img src="./images.jpeg" alt="RaceOS Experience"/>
-        </div>
+            <div class="hero-image-container">
+                <img src="assets/hero-car.png" alt="F1 Concept Car" class="hero-car" id="hero-car">
+            </div>
+            
+            <div class="scroll-indicator">
+                SCROLL FOR TELEMETRY
+                <div class="chevron"></div>
+            </div>
+        </section>
 
-        <div class="cta-section">
-            <h3>Ready to Hit the Track?</h3>
-            <a href="https://www.formula1.com" class="cta-button">Explore F1 World →</a>
-        </div>
+        <!-- Exploded View Parallax Section -->
+        <section class="features-section" id="features">
+            <div class="feature-block left">
+                <h2>AERODYNAMIC UI</h2>
+                <p>Zero drag. Total focus. A user interface stripped of the unnecessary to deliver maximum downforce on productivity.</p>
+            </div>
+            
+            <div class="telemetry-image-container">
+                <img src="assets/telemetry.png" alt="F1 Telemetry" class="telemetry-img" id="telemetry-img">
+            </div>
 
-        <footer>
-            <p>&copy; 2024 RaceOS - The Engineer's High-Performance Platform. Engineered for champions, by champions.</p>
+            <div class="feature-block right">
+                <h2>TELEMETRY DASHBOARD</h2>
+                <p>Real-time system diagnostics right at your fingertips. Monitor CPU, memory, and thermal performance with precision.</p>
+            </div>
+        </section>
+
+        <!-- Team Selection Section -->
+        <section class="team-selection" id="team-selection">
+            <div class="team-header">
+                <h2>CHOOSE YOUR CONSTRUCTOR</h2>
+                <p>Customize your F1 OS experience. Select your team to calibrate system themes.</p>
+            </div>
+            <div class="team-grid" id="team-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Press <kbd>SPACEBAR</kbd> to activate DRS Mode.</p>
+            <div class="speed-limiter">
+                <label for="limiter-toggle">PIT LANE SPEED LIMITER</label>
+                <input type="checkbox" id="limiter-toggle">
+            </div>
         </footer>
-    </div>
+    </main>
 
-    <script>
-        const teamThemes = {
-            redbull: {
-                primary: '#1E3050',
-                secondary: '#FFD800',
-                accent: '#1e3050'
-            },
-            ferrari: {
-                primary: '#DC0000',
-                secondary: '#FFFFFF',
-                accent: '#FFD700'
-            },
-            mercedes: {
-                primary: '#00D4FF',
-                secondary: '#000000',
-                accent: '#00D4FF'
-            },
-            mclaren: {
-                primary: '#FF8700',
-                secondary: '#000000',
-                accent: '#FF8700'
-            },
-            alpine: {
-                primary: '#0082FA',
-                secondary: '#FF0090',
-                accent: '#0082FA'
-            },
-            alfaromeo: {
-                primary: '#C92800',
-                secondary: '#FFFFFF',
-                accent: '#FFD700'
-            },
-            williams: {
-                primary: '#0082FA',
-                secondary: '#FFFFFF',
-                accent: '#0082FA'
-            },
-            aston: {
-                primary: '#006F62',
-                secondary: '#00D084',
-                accent: '#FFB81C'
-            }
-        };
-
-        const teamSelect = document.getElementById('team-select');
-
-        teamSelect.addEventListener('change', (e) => {
-            const theme = teamThemes[e.target.value];
-            document.documentElement.style.setProperty('--primary', theme.primary);
-            document.documentElement.style.setProperty('--secondary', theme.secondary);
-            document.documentElement.style.setProperty('--accent', theme.accent);
-            localStorage.setItem('selectedTeam', e.target.value);
-        });
-
-        // Load saved theme on page load
-        const savedTeam = localStorage.getItem('selectedTeam') || 'redbull';
-        teamSelect.value = savedTeam;
-        const theme = teamThemes[savedTeam];
-        document.documentElement.style.setProperty('--primary', theme.primary);
-        document.documentElement.style.setProperty('--secondary', theme.secondary);
-        document.documentElement.style.setProperty('--accent', theme.accent);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
