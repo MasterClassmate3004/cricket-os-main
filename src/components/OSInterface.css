@@ -1,0 +1,55 @@
+.os-interface {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+}
+
+/* We reuse the grid-bg but ensure it stays within the os-interface */
+.os-interface .grid-bg {
+  z-index: -1;
+  position: absolute;
+}
+
+.desktop-area {
+  position: absolute;
+  top: 48px; /* Below topbar */
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  z-index: 2;
+}
+
+.team-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 60%);
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.team-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-width: 800px;
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none;
+  filter: grayscale(100%) brightness(200%);
+}

@@ -3,7 +3,7 @@ import { Power, Terminal, Settings } from 'lucide-react';
 import { gsap } from 'gsap';
 import './Hero.css';
 
-export default function Hero({ team }) {
+export default function Hero({ team, onIgnite }) {
   const bgTextRef = useRef(null);
   const carRef = useRef(null);
 
@@ -69,7 +69,7 @@ export default function Hero({ team }) {
             A lightning-fast, highly-aerodynamic operating system experience. Driven by you.
           </p>
           <div className="hero-actions">
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" onClick={onIgnite}>
               <Power size={20} /> Ignite Workspace
             </button>
             <button className="btn btn-secondary" onClick={() => document.getElementById('team-selection').scrollIntoView({ behavior: 'smooth' })}>

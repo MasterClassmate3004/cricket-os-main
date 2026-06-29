@@ -1,0 +1,126 @@
+.telemetry-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-family: var(--font-mono);
+  background-color: rgba(10, 10, 10, 0.6);
+  border-radius: 8px;
+}
+
+.telemetry-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, rgba(235, 10, 30, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.track-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.track-info p {
+  margin: 0;
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.weather-info {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #ccc;
+  align-items: flex-end;
+}
+
+.leaderboard {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.leaderboard th {
+  text-align: left;
+  padding: 8px;
+  color: #888;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background-color: #111;
+  z-index: 2;
+}
+
+.leaderboard td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.driver-name {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.team-color {
+  width: 4px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* 2026 Team Colors Approx */
+.team-color.red-bull { background-color: #3671C6; }
+.team-color.ferrari { background-color: #E80020; }
+.team-color.mclaren { background-color: #FF8000; }
+.team-color.mercedes { background-color: #27F4D2; }
+.team-color.aston-martin { background-color: #229971; }
+.team-color.williams { background-color: #64C4FF; }
+.team-color.racing-bulls { background-color: #6692FF; }
+.team-color.audi { background-color: #F50537; } /* Neon Red for Audi */
+.team-color.haas { background-color: #B6BABD; }
+.team-color.alpine { background-color: #FF87BC; }
+
+.tyre {
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+}
+
+.tyre-S { color: #FF3333; border: 1px solid #FF3333; }
+.tyre-M { color: #FFD12A; border: 1px solid #FFD12A; }
+.tyre-H { color: #FFFFFF; border: 1px solid #FFFFFF; }
+
+.lap-time {
+  font-weight: bold;
+  color: #fff;
+}
+
+.gap {
+  color: #ccc;
+}
+
+.sector {
+  color: #FFE600; /* Yellow sector */
+}

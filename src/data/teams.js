@@ -6,7 +6,8 @@ export const teams = [
         accent: '#CC0000', 
         dark: '#000814',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(60deg) saturate(1.2)' // Turns Cyan into Deep Blue
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Oracle_Red_Bull_Racing_logo.svg/1200px-Oracle_Red_Bull_Racing_logo.svg.png',
+        filter: 'hue-rotate(60deg) saturate(1.2)'
     },
     { 
         id: 'mercedes',
@@ -15,7 +16,8 @@ export const teams = [
         accent: '#00A19B', 
         dark: '#000000',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(0deg) saturate(0.5)' // Keeps Teal/Cyan but makes it more silver/desaturated
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Mercedes_AMG_Petronas_F1_Logo.svg/1200px-Mercedes_AMG_Petronas_F1_Logo.svg.png',
+        filter: 'hue-rotate(0deg) saturate(0.5)'
     },
     { 
         id: 'ferrari',
@@ -24,7 +26,8 @@ export const teams = [
         accent: '#FF2800', 
         dark: '#110000',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(180deg) saturate(2)' // Turns Cyan into Red
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c0/Scuderia_Ferrari_Logo.svg/1200px-Scuderia_Ferrari_Logo.svg.png',
+        filter: 'hue-rotate(180deg) saturate(2)'
     },
     { 
         id: 'mclaren',
@@ -33,7 +36,8 @@ export const teams = [
         accent: '#474747', 
         dark: '#0F0F0F',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(210deg) saturate(1.5)' // Turns Cyan into Papaya Orange
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/66/McLaren_Racing_logo.svg/1200px-McLaren_Racing_logo.svg.png',
+        filter: 'hue-rotate(210deg) saturate(1.5)'
     },
     { 
         id: 'aston',
@@ -42,7 +46,8 @@ export const teams = [
         accent: '#CEDC00', 
         dark: '#0A1A17',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(290deg) saturate(1.2)' // Turns Cyan into British Racing Green
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Aston_Martin_Aramco_Cognizant_F1.svg/1200px-Aston_Martin_Aramco_Cognizant_F1.svg.png',
+        filter: 'hue-rotate(290deg) saturate(1.2)'
     },
     { 
         id: 'alpine',
@@ -51,7 +56,8 @@ export const teams = [
         accent: '#FD4BC7', 
         dark: '#051220',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(130deg) saturate(1.5)' // Turns Cyan into Pink/Magenta
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Alpine_F1_Team_2021_Logo.svg/1200px-Alpine_F1_Team_2021_Logo.svg.png',
+        filter: 'hue-rotate(130deg) saturate(1.5)'
     },
     { 
         id: 'williams',
@@ -60,7 +66,8 @@ export const teams = [
         accent: '#00A0FF', 
         dark: '#000B20',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(30deg) saturate(1)' // Turns Cyan into Light Blue
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Williams_Racing_2020_logo.svg/1200px-Williams_Racing_2020_logo.svg.png',
+        filter: 'hue-rotate(30deg) saturate(1)'
     },
     { 
         id: 'vcarb',
@@ -69,7 +76,8 @@ export const teams = [
         accent: '#FFFFFF', 
         dark: '#00111A',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(50deg) saturate(0.8)' // Turns Cyan into deeper Blue/White
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Visa_Cash_App_RB_F1_Team_logo.svg/1200px-Visa_Cash_App_RB_F1_Team_logo.svg.png',
+        filter: 'hue-rotate(50deg) saturate(0.8)'
     },
     { 
         id: 'sauber',
@@ -78,7 +86,8 @@ export const teams = [
         accent: '#000000', 
         dark: '#050505',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(270deg) saturate(1.5)' // Turns Cyan into Neon Green
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Kick_Sauber_logo.svg/1200px-Kick_Sauber_logo.svg.png',
+        filter: 'hue-rotate(270deg) saturate(1.5)'
     },
     { 
         id: 'haas',
@@ -87,7 +96,8 @@ export const teams = [
         accent: '#E6002B', 
         dark: '#111111',
         imageUrl: '/assets/hero-car.png',
-        filter: 'hue-rotate(180deg) saturate(1.2)' // Turns Cyan into Red/Black
+        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Haas_F1_Team_logo_2024.svg/1200px-Haas_F1_Team_logo_2024.svg.png',
+        filter: 'hue-rotate(180deg) saturate(1.2)'
     }
 ];
 

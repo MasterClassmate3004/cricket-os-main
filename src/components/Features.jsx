@@ -14,8 +14,7 @@ export default function Features() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 1,
-          snap: 1 / (sectionsRef.current.length - 1),
+          scrub: 1.5, // Added a slight smoothing to the scrub
           end: () => "+=" + containerRef.current.offsetWidth * 2
         }
       });

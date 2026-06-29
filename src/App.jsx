@@ -9,11 +9,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
 
+import OSInterface from './components/OSInterface';
+
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [selectedTeam, setSelectedTeam] = useState(defaultTeam);
   const [loading, setLoading] = useState(true);
+  const [isOSActive, setIsOSActive] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', selectedTeam.primary);
@@ -24,19 +27,23 @@ function App() {
   return (
     <>
       {loading && <Loader onComplete={() => setLoading(false)} />}
-      
-      {!loading && (
+
+      {!loading && !isOSActive && (
         <div className="app-fade-in">
           <div className="grid-bg"></div>
-          <Hero team={selectedTeam} />
+          <Hero team={selectedTeam} onIgnite={() => setIsOSActive(true)} />
           <Features />
           <Benchmarks team={selectedTeam} />
           <TeamSelector teams={teams} currentTeam={selectedTeam} onSelect={setSelectedTeam} />
-          
+
           <footer style={{ textAlign: 'center', padding: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', fontFamily: 'var(--font-mono)' }}>
             <p>Formula 1 OS - Prototype V2.0</p>
           </footer>
         </div>
+      )}
+
+      {!loading && isOSActive && (
+        <OSInterface team={selectedTeam} onExit={() => setIsOSActive(false)} />
       )}
     </>
   );
