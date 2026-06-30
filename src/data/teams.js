@@ -9,7 +9,7 @@ export const teams = [
         logoUrl: '/logos/red-bull-racing.png',
         filter: 'hue-rotate(60deg) saturate(1.2)',
         country: 'Austria',
-        principal: 'Christian Horner',
+        principal: 'Laurent Mekies',
         established: 2005,
         stats: { wins: 120, points: 7600, podiums: 280 },
         drivers: [
@@ -81,7 +81,7 @@ export const teams = [
         logoUrl: '/logos/aston-martin.png',
         filter: 'hue-rotate(290deg) saturate(1.2)',
         country: 'United Kingdom',
-        principal: 'Mike Krack',
+        principal: 'Adrian Newey',
         established: 2021,
         stats: { wins: 1, points: 500, podiums: 15 },
         drivers: [
@@ -99,7 +99,7 @@ export const teams = [
         logoUrl: '/logos/alpine.png',
         filter: 'hue-rotate(130deg) saturate(1.5)',
         country: 'France',
-        principal: 'Oliver Oakes',
+        principal: 'Flavio Briatore',
         established: 2021,
         stats: { wins: 1, points: 450, podiums: 5 },
         drivers: [
@@ -135,7 +135,7 @@ export const teams = [
         logoUrl: '/logos/racing-bulls.png',
         filter: 'hue-rotate(50deg) saturate(0.8)',
         country: 'Italy',
-        principal: 'Laurent Mekies',
+        principal: 'Alan Permane',
         established: 2024,
         stats: { wins: 0, points: 100, podiums: 0 },
         drivers: [
@@ -153,7 +153,7 @@ export const teams = [
         logoUrl: '/logos/audi.png',
         filter: 'hue-rotate(350deg) saturate(1.5)',
         country: 'Germany',
-        principal: 'Mattia Binotto',
+        principal: 'Jonathan Wheatley',
         established: 2026,
         stats: { wins: 0, points: 0, podiums: 0 },
         drivers: [
@@ -189,7 +189,7 @@ export const teams = [
         logoUrl: '/logos/cadillac.png',
         filter: 'hue-rotate(0deg) saturate(0) brightness(1.5)',
         country: 'United States',
-        principal: 'Michael Andretti',
+        principal: 'Graeme Lowdon',
         established: 2026,
         stats: { wins: 0, points: 0, podiums: 0 },
         drivers: [
