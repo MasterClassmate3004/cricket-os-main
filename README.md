@@ -1,16 +1,34 @@
-# React + Vite
+# 🏎️ Formula 1 OS Prototype
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Formula 1 OS Prototype**, a stunning, web-based operating system built for true F1 enthusiasts! Built with React and Vite, this interactive web experience simulates a desktop OS completely themed around the 2026 Formula 1 season.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **🎨 Dynamic Team Theming**: Choose your favorite F1 team on startup, and the entire OS interface—from the accent colors to the background gradients—will instantly adapt to their official team colors.
+- **⏱️ Live Telemetry & Timing**: Experience a realistic Live Timing leaderboard featuring the **accurate 2026 F1 Driver Lineup**. The simulated timings enforce realistic constraints (guaranteeing elite drivers stay at the top and the grid is bucketed by actual team performance).
+- **🌡️ Live Machine Temperature**: Just like an F1 car, your taskbar dynamically displays the live "machine temperature" with a thermometer icon, warning you visually if the engine gets too hot!
+- **🏎️ Pitstop Reboot Sequence**: Instead of a boring page refresh, clicking "Go for a Pitstop" triggers a cinematic, Apple-style OS reboot sequence complete with an F1 logo, sleek loading bar, and a haptic startup chime powered by the Web Audio API!
+- **📱 Fully Interactive Window Manager**: Drag, drop, minimize, and explore F1-themed apps (Telemetry, Team Info, Calendar) seamlessly on the virtual desktop.
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To run this project locally:
 
-## Expanding the ESLint configuration
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **React 18** (Vite setup)
+- **Vanilla CSS** for flexible and dynamic theming
+- **GSAP** for smooth scroll animations
+- **Lucide React** for beautiful UI icons
+
+*Get ready for lights out and away we go!* 🏁

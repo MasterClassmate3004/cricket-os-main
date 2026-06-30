@@ -88,10 +88,14 @@
   flex: 1;
 }
 
-.os-topbar-time {
+.os-topbar-time,
+.os-topbar-temp {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 4px 12px;
   border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .os-topbar-btn {

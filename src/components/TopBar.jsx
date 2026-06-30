@@ -1,15 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Settings, Power } from 'lucide-react';
+import { Settings, Power, Thermometer } from 'lucide-react';
 import './TopBar.css';
 
 export default function TopBar({ team, onExit, apps = [], openWindows = [], onOpenApp }) {
   const [time, setTime] = useState(new Date());
+  const [machineTemp, setMachineTemp] = useState(55);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
     }, 1000);
-    return () => clearInterval(timer);
+    
+    const tempTimer = setInterval(() => {
+      setMachineTemp(prev => {
+        const change = Math.floor(Math.random() * 3) - 1;
+        const newTemp = prev + change;
+        if (newTemp > 75) return 74;
+        if (newTemp < 45) return 46;
+        return newTemp;
+      });
+    }, 4000);
+    
+    return () => {
+      clearInterval(timer);
+      clearInterval(tempTimer);
+    };
   }, []);
 
   const formattedTime = time.toLocaleTimeString([], { 
@@ -56,6 +71,10 @@ export default function TopBar({ team, onExit, apps = [], openWindows = [], onOp
       </div>
 
       <div className="os-topbar-right">
+        <div className="os-topbar-temp">
+          <Thermometer size={14} style={{ color: machineTemp >= 70 ? '#ff4d4d' : 'var(--text-main)' }} />
+          <span>{machineTemp}°C</span>
+        </div>
         <div className="os-topbar-time">
           {formattedDate} {formattedTime}
         </div>

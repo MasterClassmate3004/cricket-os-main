@@ -14,7 +14,7 @@ export const teams = [
         stats: { wins: 120, points: 7600, podiums: 280 },
         drivers: [
             { name: 'Max Verstappen', code: 'VER', country: 'Netherlands' },
-            { name: 'Liam Lawson', code: 'LAW', country: 'New Zealand' }
+            { name: 'Isack Hadjar', code: 'HAD', country: 'France' }
         ]
     },
     { 
@@ -104,7 +104,7 @@ export const teams = [
         stats: { wins: 1, points: 450, podiums: 5 },
         drivers: [
             { name: 'Pierre Gasly', code: 'GAS', country: 'France' },
-            { name: 'Jack Doohan', code: 'DOO', country: 'Australia' }
+            { name: 'Franco Colapinto', code: 'COL', country: 'Argentina' }
         ]
     },
     { 
@@ -139,14 +139,14 @@ export const teams = [
         established: 2024,
         stats: { wins: 0, points: 100, podiums: 0 },
         drivers: [
-            { name: 'Yuki Tsunoda', code: 'TSU', country: 'Japan' },
-            { name: 'Isack Hadjar', code: 'HAD', country: 'France' }
+            { name: 'Arvid Lindblad', code: 'LIN', country: 'United Kingdom' },
+            { name: 'Liam Lawson', code: 'LAW', country: 'New Zealand' }
         ]
     },
     { 
         id: 'audi',
         name: 'Audi', 
-        primary: '#E60000', 
+        primary: '#F50537', 
         accent: '#FFFFFF', 
         dark: '#0A0A0A',
         imageUrl: '/assets/hero-car.png',
@@ -193,8 +193,8 @@ export const teams = [
         established: 2026,
         stats: { wins: 0, points: 0, podiums: 0 },
         drivers: [
-            { name: 'Colton Herta', code: 'HER', country: 'United States' },
-            { name: 'Alex Palou', code: 'PAL', country: 'Spain' }
+            { name: 'Sergio Perez', code: 'PER', country: 'Mexico' },
+            { name: 'Valtteri Bottas', code: 'BOT', country: 'Finland' }
         ]
     }
 ];

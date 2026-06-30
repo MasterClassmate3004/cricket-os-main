@@ -3,7 +3,7 @@ import './TelemetryApp.css';
 
 const DRIVERS_2026 = [
   { name: 'VER', fullName: 'Max Verstappen', team: 'red-bull', no: 1 },
-  { name: 'LAW', fullName: 'Liam Lawson', team: 'red-bull', no: 30 },
+  { name: 'HAD', fullName: 'Isack Hadjar', team: 'red-bull', no: 37 },
   { name: 'LEC', fullName: 'Charles Leclerc', team: 'ferrari', no: 16 },
   { name: 'HAM', fullName: 'Lewis Hamilton', team: 'ferrari', no: 44 },
   { name: 'NOR', fullName: 'Lando Norris', team: 'mclaren', no: 4 },
@@ -14,16 +14,16 @@ const DRIVERS_2026 = [
   { name: 'STR', fullName: 'Lance Stroll', team: 'aston-martin', no: 18 },
   { name: 'ALB', fullName: 'Alexander Albon', team: 'williams', no: 23 },
   { name: 'SAI', fullName: 'Carlos Sainz', team: 'williams', no: 55 },
-  { name: 'TSU', fullName: 'Yuki Tsunoda', team: 'racing-bulls', no: 22 },
-  { name: 'HAD', fullName: 'Isack Hadjar', team: 'racing-bulls', no: 37 },
+  { name: 'LIN', fullName: 'Arvid Lindblad', team: 'racing-bulls', no: 6 },
+  { name: 'LAW', fullName: 'Liam Lawson', team: 'racing-bulls', no: 30 },
   { name: 'HUL', fullName: 'Nico Hulkenberg', team: 'audi', no: 27 },
   { name: 'BOR', fullName: 'Gabriel Bortoleto', team: 'audi', no: 85 },
   { name: 'OCO', fullName: 'Esteban Ocon', team: 'haas', no: 31 },
   { name: 'BEA', fullName: 'Oliver Bearman', team: 'haas', no: 87 },
   { name: 'GAS', fullName: 'Pierre Gasly', team: 'alpine', no: 10 },
-  { name: 'DOO', fullName: 'Jack Doohan', team: 'alpine', no: 7 },
-  { name: 'HER', fullName: 'Colton Herta', team: 'cadillac', no: 26 },
-  { name: 'PAL', fullName: 'Alex Palou', team: 'cadillac', no: 28 }
+  { name: 'COL', fullName: 'Franco Colapinto', team: 'alpine', no: 43 },
+  { name: 'PER', fullName: 'Sergio Perez', team: 'cadillac', no: 11 },
+  { name: 'BOT', fullName: 'Valtteri Bottas', team: 'cadillac', no: 77 }
 ];
 
 const generateLapTime = (base = 80) => {
@@ -41,10 +41,42 @@ export default function TelemetryApp() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    // Initial generation
+    // 1. Define sets
+    const mustBeTop4 = ['HAM', 'RUS', 'ANT', 'VER'];
+    const topPool = ['HAD', 'LEC', 'NOR', 'PIA', 'LIN', 'LAW', 'GAS', 'COL']; // 8 drivers
+    const midPool = ['BEA', 'OCO', 'ALB', 'SAI', 'BOR', 'HUL']; // 6 drivers
+    const bottom4Pool = ['STR', 'ALO', 'PER', 'BOT']; // 4 drivers (Aston Martin + Cadillac)
+
+    // 2. Shuffle helper
+    const shuffle = (array) => array.sort(() => 0.5 - Math.random());
+
+    // 3. Top 6 (Tier 1: 1-6)
+    const shuffledTopPool = shuffle([...topPool]);
+    const top6Extra = shuffledTopPool.splice(0, 2); // Take 2
+    const top6Names = [...mustBeTop4, ...top6Extra];
+
+    // 4. Pos 7-10 (Tier 2: 7-10)
+    const pos7to10Names = shuffledTopPool.splice(0, 4); // Take next 4
+
+    // 5. Pos 11-18 (Tier 3: 11-18)
+    // The remaining 2 from shuffledTopPool spill over here
+    const spillOver = shuffledTopPool;
+    const pos11to18Names = shuffle([...midPool, ...spillOver]); // 6 + 2 = 8 drivers
+
+    // 6. Pos 19-22 (Tier 4: 19-22)
+    const pos19to22Names = bottom4Pool;
+
+    const getBaseTime = (name) => {
+      if (top6Names.includes(name)) return 70; // 1-6
+      if (pos7to10Names.includes(name)) return 76; // 7-10
+      if (pos11to18Names.includes(name)) return 82; // 11-18
+      if (pos19to22Names.includes(name)) return 88; // 19-22
+      return 82;
+    };
+
     const initialData = DRIVERS_2026.map(driver => ({
       ...driver,
-      lapTime: generateLapTime(),
+      lapTime: generateLapTime(getBaseTime(driver.name)),
       s1: generateSector(),
       s2: generateSector(),
       s3: generateSector(),
