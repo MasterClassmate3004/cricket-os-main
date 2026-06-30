@@ -1,16 +1,21 @@
-# 🏎️ Formula 1 OS Prototype
+# Formula 1 OS Prototype
 
-Welcome to the **Formula 1 OS Prototype**, a stunning, web-based operating system built for true F1 enthusiasts! Built with React and Vite, this interactive web experience simulates a desktop OS completely themed around the 2026 Formula 1 season.
+A web-based operating system interface with a personalised Formula One theme.
 
-## ✨ Features
+## Features
 
-- **🎨 Dynamic Team Theming**: Choose your favorite F1 team on startup, and the entire OS interface—from the accent colors to the background gradients—will instantly adapt to their official team colors.
-- **⏱️ Live Telemetry & Timing**: Experience a realistic Live Timing leaderboard featuring the **accurate 2026 F1 Driver Lineup**. The simulated timings enforce realistic constraints (guaranteeing elite drivers stay at the top and the grid is bucketed by actual team performance).
-- **🌡️ Live Machine Temperature**: Just like an F1 car, your taskbar dynamically displays the live "machine temperature" with a thermometer icon, warning you visually if the engine gets too hot!
-- **🏎️ Pitstop Reboot Sequence**: Instead of a boring page refresh, clicking "Go for a Pitstop" triggers a cinematic, Apple-style OS reboot sequence complete with an F1 logo, sleek loading bar, and a haptic startup chime powered by the Web Audio API!
-- **📱 Fully Interactive Window Manager**: Drag, drop, minimize, and explore F1-themed apps (Telemetry, Team Info, Calendar) seamlessly on the virtual desktop.
+1. Constructor's Team Themes: Choose your favorite F1 team on startup, and the entire OS interface will adapt to the chosen constructor's team.
+2. Live Telemetry & Timing: Experience a realistic Live Timing leaderboard featuring the 2026 F1 driver lineup so you know who you are driving against!!
+3. Live Machine Temperature: Just like an F1 car, your taskbar displays the live machine temps, warning you visually if the engine gets too hot.
+4. Pitstop & Reboot for OS: Clicking "Go for a Pitstop" triggers a OS reboot that ensures that you are back with optimal tires in the circuit.
 
-## 🚀 Getting Started
+TIME TO GO DRIVING!
+
+SIMPLY LOVELLYYY!!!
+
+Can be viewed on: https://formula-one-os.vercel.app
+
+## Getting Started
 
 To run this project locally:
 
@@ -24,11 +29,9 @@ To run this project locally:
    npm run dev
    ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **React 18** (Vite setup)
-- **Vanilla CSS** for flexible and dynamic theming
-- **GSAP** for smooth scroll animations
-- **Lucide React** for beautiful UI icons
-
-*Get ready for lights out and away we go!* 🏁
+- React 18 (Vite)
+- Vanilla CSS
+- GSAP
+- Lucide React
