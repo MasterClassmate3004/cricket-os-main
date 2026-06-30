@@ -17,11 +17,14 @@ export default function Window({
   const [size, setSize] = useState({ width, height });
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   
   const dragRef = useRef({ startX: 0, startY: 0, initX: 0, initY: 0 });
   const resizeRef = useRef({ startX: 0, startY: 0, initWidth: 0, initHeight: 0 });
 
   const handleMouseDown = (e) => {
+    if (isMaximized) return;
     setIsDragging(true);
     dragRef.current = {
       startX: e.clientX,
@@ -96,23 +99,32 @@ export default function Window({
     if (onFocus) onFocus(id);
   };
 
+  useEffect(() => {
+    if (isMinimized) {
+      setIsMinimized(false);
+    }
+  }, [zIndex]);
+
   return (
     <div 
       className="os-window" 
       style={{ 
-        left: `${position.x}px`, 
-        top: `${position.y}px`,
+        left: isMaximized ? '0px' : `${position.x}px`, 
+        top: isMaximized ? '56px' : `${position.y}px`,
+        width: isMaximized ? '100vw' : `${size.width}px`,
+        height: isMaximized ? 'calc(100vh - 56px)' : `${size.height}px`,
         zIndex: zIndex,
-        width: `${size.width}px`,
-        height: `${size.height}px`
+        display: isMinimized ? 'none' : 'flex',
+        borderRadius: isMaximized ? '0px' : '12px',
+        transition: isDragging || isResizing ? 'none' : 'left 0.3s, top 0.3s, width 0.3s, height 0.3s, border-radius 0.3s'
       }}
       onMouseDown={handleWindowClick}
     >
       <div className="os-window-header" onMouseDown={handleMouseDown}>
         <div className="os-window-controls">
           <div className="os-window-dot close" onClick={(e) => { e.stopPropagation(); if (onClose) onClose(id); }}></div>
-          <div className="os-window-dot minimize"></div>
-          <div className="os-window-dot maximize"></div>
+          <div className="os-window-dot minimize" onClick={(e) => { e.stopPropagation(); setIsMinimized(true); }}></div>
+          <div className="os-window-dot maximize" onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); if (onFocus) onFocus(id); }}></div>
         </div>
         <div className="os-window-title">{title}</div>
       </div>
