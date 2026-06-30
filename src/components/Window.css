@@ -1,9 +1,5 @@
 .os-window {
   position: absolute;
-  width: 600px;
-  max-width: 90vw;
-  height: 400px;
-  max-height: 80vh;
   background: var(--bg-panel);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -85,4 +81,30 @@
 .os-window-content p {
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+.os-window-resizer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  z-index: 100;
+}
+
+.os-window-resizer::after {
+  content: '';
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom-right-radius: 2px;
+}
+
+.os-window-resizer:hover::after {
+  border-color: rgba(255, 255, 255, 0.8);
 }

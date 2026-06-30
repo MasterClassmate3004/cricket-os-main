@@ -115,7 +115,7 @@
 }
 
 .os-topbar-btn.danger:hover {
-  background-color: rgba(255, 50, 50, 0.2);
-  border-color: #ff3232;
-  color: #ff3232;
+  background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }

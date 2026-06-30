@@ -6,8 +6,16 @@ export const teams = [
         accent: '#CC0000', 
         dark: '#000814',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Oracle_Red_Bull_Racing_logo.svg/1200px-Oracle_Red_Bull_Racing_logo.svg.png',
-        filter: 'hue-rotate(60deg) saturate(1.2)'
+        logoUrl: '/logos/red-bull-racing.png',
+        filter: 'hue-rotate(60deg) saturate(1.2)',
+        country: 'Austria',
+        principal: 'Christian Horner',
+        established: 2005,
+        stats: { wins: 120, points: 7600, podiums: 280 },
+        drivers: [
+            { name: 'Max Verstappen', code: 'VER', country: 'Netherlands' },
+            { name: 'Liam Lawson', code: 'LAW', country: 'New Zealand' }
+        ]
     },
     { 
         id: 'mercedes',
@@ -16,8 +24,16 @@ export const teams = [
         accent: '#00A19B', 
         dark: '#000000',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Mercedes_AMG_Petronas_F1_Logo.svg/1200px-Mercedes_AMG_Petronas_F1_Logo.svg.png',
-        filter: 'hue-rotate(0deg) saturate(0.5)'
+        logoUrl: '/logos/mercedes.png',
+        filter: 'hue-rotate(0deg) saturate(0.5)',
+        country: 'Germany',
+        principal: 'Toto Wolff',
+        established: 1954,
+        stats: { wins: 125, points: 7200, podiums: 290 },
+        drivers: [
+            { name: 'George Russell', code: 'RUS', country: 'United Kingdom' },
+            { name: 'Kimi Antonelli', code: 'ANT', country: 'Italy' }
+        ]
     },
     { 
         id: 'ferrari',
@@ -26,8 +42,16 @@ export const teams = [
         accent: '#FF2800', 
         dark: '#110000',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c0/Scuderia_Ferrari_Logo.svg/1200px-Scuderia_Ferrari_Logo.svg.png',
-        filter: 'hue-rotate(180deg) saturate(2)'
+        logoUrl: '/logos/ferrari.png',
+        filter: 'hue-rotate(180deg) saturate(2)',
+        country: 'Italy',
+        principal: 'Frédéric Vasseur',
+        established: 1950,
+        stats: { wins: 245, points: 10000, podiums: 820 },
+        drivers: [
+            { name: 'Charles Leclerc', code: 'LEC', country: 'Monaco' },
+            { name: 'Lewis Hamilton', code: 'HAM', country: 'United Kingdom' }
+        ]
     },
     { 
         id: 'mclaren',
@@ -36,8 +60,16 @@ export const teams = [
         accent: '#474747', 
         dark: '#0F0F0F',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/66/McLaren_Racing_logo.svg/1200px-McLaren_Racing_logo.svg.png',
-        filter: 'hue-rotate(210deg) saturate(1.5)'
+        logoUrl: '/logos/mclaren.png',
+        filter: 'hue-rotate(210deg) saturate(1.5)',
+        country: 'United Kingdom',
+        principal: 'Andrea Stella',
+        established: 1966,
+        stats: { wins: 185, points: 6500, podiums: 510 },
+        drivers: [
+            { name: 'Lando Norris', code: 'NOR', country: 'United Kingdom' },
+            { name: 'Oscar Piastri', code: 'PIA', country: 'Australia' }
+        ]
     },
     { 
         id: 'aston',
@@ -46,8 +78,16 @@ export const teams = [
         accent: '#CEDC00', 
         dark: '#0A1A17',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Aston_Martin_Aramco_Cognizant_F1.svg/1200px-Aston_Martin_Aramco_Cognizant_F1.svg.png',
-        filter: 'hue-rotate(290deg) saturate(1.2)'
+        logoUrl: '/logos/aston-martin.png',
+        filter: 'hue-rotate(290deg) saturate(1.2)',
+        country: 'United Kingdom',
+        principal: 'Mike Krack',
+        established: 2021,
+        stats: { wins: 1, points: 500, podiums: 15 },
+        drivers: [
+            { name: 'Fernando Alonso', code: 'ALO', country: 'Spain' },
+            { name: 'Lance Stroll', code: 'STR', country: 'Canada' }
+        ]
     },
     { 
         id: 'alpine',
@@ -56,8 +96,16 @@ export const teams = [
         accent: '#FD4BC7', 
         dark: '#051220',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Alpine_F1_Team_2021_Logo.svg/1200px-Alpine_F1_Team_2021_Logo.svg.png',
-        filter: 'hue-rotate(130deg) saturate(1.5)'
+        logoUrl: '/logos/alpine.png',
+        filter: 'hue-rotate(130deg) saturate(1.5)',
+        country: 'France',
+        principal: 'Oliver Oakes',
+        established: 2021,
+        stats: { wins: 1, points: 450, podiums: 5 },
+        drivers: [
+            { name: 'Pierre Gasly', code: 'GAS', country: 'France' },
+            { name: 'Jack Doohan', code: 'DOO', country: 'Australia' }
+        ]
     },
     { 
         id: 'williams',
@@ -66,38 +114,88 @@ export const teams = [
         accent: '#00A0FF', 
         dark: '#000B20',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Williams_Racing_2020_logo.svg/1200px-Williams_Racing_2020_logo.svg.png',
-        filter: 'hue-rotate(30deg) saturate(1)'
+        logoUrl: '/logos/williams.png',
+        filter: 'hue-rotate(30deg) saturate(1)',
+        country: 'United Kingdom',
+        principal: 'James Vowles',
+        established: 1977,
+        stats: { wins: 114, points: 3600, podiums: 313 },
+        drivers: [
+            { name: 'Carlos Sainz', code: 'SAI', country: 'Spain' },
+            { name: 'Alexander Albon', code: 'ALB', country: 'Thailand' }
+        ]
     },
     { 
         id: 'vcarb',
-        name: 'VCARB / AlphaTauri', 
+        name: 'Racing Bulls', 
         primary: '#00293F', 
         accent: '#FFFFFF', 
         dark: '#00111A',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Visa_Cash_App_RB_F1_Team_logo.svg/1200px-Visa_Cash_App_RB_F1_Team_logo.svg.png',
-        filter: 'hue-rotate(50deg) saturate(0.8)'
+        logoUrl: '/logos/racing-bulls.png',
+        filter: 'hue-rotate(50deg) saturate(0.8)',
+        country: 'Italy',
+        principal: 'Laurent Mekies',
+        established: 2024,
+        stats: { wins: 0, points: 100, podiums: 0 },
+        drivers: [
+            { name: 'Yuki Tsunoda', code: 'TSU', country: 'Japan' },
+            { name: 'Isack Hadjar', code: 'HAD', country: 'France' }
+        ]
     },
     { 
-        id: 'sauber',
-        name: 'Alfa Romeo / Sauber', 
-        primary: '#00E701', 
-        accent: '#000000', 
-        dark: '#050505',
+        id: 'audi',
+        name: 'Audi', 
+        primary: '#E60000', 
+        accent: '#FFFFFF', 
+        dark: '#0A0A0A',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Kick_Sauber_logo.svg/1200px-Kick_Sauber_logo.svg.png',
-        filter: 'hue-rotate(270deg) saturate(1.5)'
+        logoUrl: '/logos/audi.png',
+        filter: 'hue-rotate(350deg) saturate(1.5)',
+        country: 'Germany',
+        principal: 'Mattia Binotto',
+        established: 2026,
+        stats: { wins: 0, points: 0, podiums: 0 },
+        drivers: [
+            { name: 'Nico Hulkenberg', code: 'HUL', country: 'Germany' },
+            { name: 'Gabriel Bortoleto', code: 'BOR', country: 'Brazil' }
+        ]
     },
     { 
         id: 'haas',
-        name: 'Haas', 
+        name: 'Haas F1 Team', 
         primary: '#FFFFFF', 
         accent: '#E6002B', 
         dark: '#111111',
         imageUrl: '/assets/hero-car.png',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Haas_F1_Team_logo_2024.svg/1200px-Haas_F1_Team_logo_2024.svg.png',
-        filter: 'hue-rotate(180deg) saturate(1.2)'
+        logoUrl: '/logos/haas-f1-team.png',
+        filter: 'hue-rotate(180deg) saturate(1.2)',
+        country: 'United States',
+        principal: 'Ayao Komatsu',
+        established: 2016,
+        stats: { wins: 0, points: 300, podiums: 0 },
+        drivers: [
+            { name: 'Esteban Ocon', code: 'OCO', country: 'France' },
+            { name: 'Oliver Bearman', code: 'BEA', country: 'United Kingdom' }
+        ]
+    },
+    { 
+        id: 'cadillac',
+        name: 'Cadillac Racing', 
+        primary: '#C0C0C0', 
+        accent: '#808080', 
+        dark: '#000000',
+        imageUrl: '/assets/hero-car.png',
+        logoUrl: '/logos/cadillac.png',
+        filter: 'hue-rotate(0deg) saturate(0) brightness(1.5)',
+        country: 'United States',
+        principal: 'Michael Andretti',
+        established: 2026,
+        stats: { wins: 0, points: 0, podiums: 0 },
+        drivers: [
+            { name: 'Colton Herta', code: 'HER', country: 'United States' },
+            { name: 'Alex Palou', code: 'PAL', country: 'Spain' }
+        ]
     }
 ];
 

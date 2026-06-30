@@ -10,12 +10,16 @@ export default function Window({
   onFocus, 
   zIndex = 10,
   initialPosition = { x: 50, y: 50 },
-  width,
-  height
+  width = 600,
+  height = 400
 }) {
   const [position, setPosition] = useState(initialPosition);
+  const [size, setSize] = useState({ width, height });
   const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  
   const dragRef = useRef({ startX: 0, startY: 0, initX: 0, initY: 0 });
+  const resizeRef = useRef({ startX: 0, startY: 0, initWidth: 0, initHeight: 0 });
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -24,6 +28,18 @@ export default function Window({
       startY: e.clientY,
       initX: position.x,
       initY: position.y
+    };
+    if (onFocus) onFocus(id);
+  };
+
+  const handleResizeMouseDown = (e) => {
+    e.stopPropagation();
+    setIsResizing(true);
+    resizeRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      initWidth: size.width,
+      initHeight: size.height
     };
     if (onFocus) onFocus(id);
   };
@@ -52,6 +68,30 @@ export default function Window({
     };
   }, [isDragging]);
 
+  useEffect(() => {
+    if (!isResizing) return;
+
+    const handleMouseMove = (e) => {
+      const dx = e.clientX - resizeRef.current.startX;
+      const dy = e.clientY - resizeRef.current.startY;
+      setSize({
+        width: Math.max(300, resizeRef.current.initWidth + dx),
+        height: Math.max(200, resizeRef.current.initHeight + dy)
+      });
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing]);
+
   const handleWindowClick = () => {
     if (onFocus) onFocus(id);
   };
@@ -63,8 +103,8 @@ export default function Window({
         left: `${position.x}px`, 
         top: `${position.y}px`,
         zIndex: zIndex,
-        ...(width && { width }),
-        ...(height && { height })
+        width: `${size.width}px`,
+        height: `${size.height}px`
       }}
       onMouseDown={handleWindowClick}
     >
@@ -88,6 +128,7 @@ export default function Window({
           </>
         )}
       </div>
+      <div className="os-window-resizer" onMouseDown={handleResizeMouseDown}></div>
     </div>
   );
 }

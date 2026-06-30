@@ -44,7 +44,11 @@ export default function TopBar({ team, onExit, apps = [], openWindows = [], onOp
               onClick={() => onOpenApp(app.id)}
               title={app.label}
             >
-              <AppIcon size={20} />
+              {app.iconUrl ? (
+                <img src={app.iconUrl} alt={app.label} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.6)' }} />
+              ) : (
+                <AppIcon size={20} />
+              )}
               {isOpen && <div className="os-topbar-app-dot"></div>}
             </div>
           );

@@ -4,15 +4,17 @@ import Window from './Window';
 import DesktopIcon from './DesktopIcon';
 import TelemetryApp from './apps/TelemetryApp';
 import CalendarApp from './apps/CalendarApp';
+import TeamInfoApp from './apps/TeamInfoApp';
 import { Activity, Calendar } from 'lucide-react';
 import './OSInterface.css';
 
-const APPS = [
-  { id: 'telemetry', label: 'Live Timing', icon: Activity, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
-  { id: 'calendar', label: 'Calendar', icon: Calendar, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} }
-];
-
 export default function OSInterface({ team, onExit }) {
+  const APPS = [
+    { id: 'telemetry', label: 'Live Timing', icon: Activity, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
+    { id: 'calendar', label: 'Calendar', icon: Calendar, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
+    { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} }
+  ];
+
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [openWindows, setOpenWindows] = useState([]);
   const [maxZIndex, setMaxZIndex] = useState(10);
@@ -66,6 +68,7 @@ export default function OSInterface({ team, onExit }) {
             key={app.id}
             id={app.id}
             icon={app.icon}
+            iconUrl={app.iconUrl}
             label={app.label}
             isSelected={selectedIcon === app.id}
             onSelect={handleIconSelect}
@@ -89,7 +92,7 @@ export default function OSInterface({ team, onExit }) {
             onClose={handleWindowClose}
             onFocus={handleWindowFocus}
           >
-            <AppContent />
+            <AppContent team={team} />
           </Window>
         );
       })}

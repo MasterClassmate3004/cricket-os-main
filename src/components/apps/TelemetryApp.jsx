@@ -2,26 +2,28 @@ import { useState, useEffect } from 'react';
 import './TelemetryApp.css';
 
 const DRIVERS_2026 = [
-  { name: 'VER', fullName: 'Max Verstappen', team: 'Red Bull' },
-  { name: 'LAW', fullName: 'Liam Lawson', team: 'Red Bull' },
-  { name: 'LEC', fullName: 'Charles Leclerc', team: 'Ferrari' },
-  { name: 'HAM', fullName: 'Lewis Hamilton', team: 'Ferrari' },
-  { name: 'NOR', fullName: 'Lando Norris', team: 'McLaren' },
-  { name: 'PIA', fullName: 'Oscar Piastri', team: 'McLaren' },
-  { name: 'RUS', fullName: 'George Russell', team: 'Mercedes' },
-  { name: 'ANT', fullName: 'Kimi Antonelli', team: 'Mercedes' },
-  { name: 'ALO', fullName: 'Fernando Alonso', team: 'Aston Martin' },
-  { name: 'STR', fullName: 'Lance Stroll', team: 'Aston Martin' },
-  { name: 'ALB', fullName: 'Alexander Albon', team: 'Williams' },
-  { name: 'SAI', fullName: 'Carlos Sainz', team: 'Williams' },
-  { name: 'TSU', fullName: 'Yuki Tsunoda', team: 'Racing Bulls' },
-  { name: 'HAD', fullName: 'Isack Hadjar', team: 'Racing Bulls' },
-  { name: 'HUL', fullName: 'Nico Hulkenberg', team: 'Audi' },
-  { name: 'BOR', fullName: 'Gabriel Bortoleto', team: 'Audi' },
-  { name: 'OCO', fullName: 'Esteban Ocon', team: 'Haas' },
-  { name: 'BEA', fullName: 'Oliver Bearman', team: 'Haas' },
-  { name: 'GAS', fullName: 'Pierre Gasly', team: 'Alpine' },
-  { name: 'DOO', fullName: 'Jack Doohan', team: 'Alpine' }
+  { name: 'VER', fullName: 'Max Verstappen', team: 'red-bull', no: 1 },
+  { name: 'LAW', fullName: 'Liam Lawson', team: 'red-bull', no: 30 },
+  { name: 'LEC', fullName: 'Charles Leclerc', team: 'ferrari', no: 16 },
+  { name: 'HAM', fullName: 'Lewis Hamilton', team: 'ferrari', no: 44 },
+  { name: 'NOR', fullName: 'Lando Norris', team: 'mclaren', no: 4 },
+  { name: 'PIA', fullName: 'Oscar Piastri', team: 'mclaren', no: 81 },
+  { name: 'RUS', fullName: 'George Russell', team: 'mercedes', no: 63 },
+  { name: 'ANT', fullName: 'Kimi Antonelli', team: 'mercedes', no: 12 },
+  { name: 'ALO', fullName: 'Fernando Alonso', team: 'aston-martin', no: 14 },
+  { name: 'STR', fullName: 'Lance Stroll', team: 'aston-martin', no: 18 },
+  { name: 'ALB', fullName: 'Alexander Albon', team: 'williams', no: 23 },
+  { name: 'SAI', fullName: 'Carlos Sainz', team: 'williams', no: 55 },
+  { name: 'TSU', fullName: 'Yuki Tsunoda', team: 'racing-bulls', no: 22 },
+  { name: 'HAD', fullName: 'Isack Hadjar', team: 'racing-bulls', no: 37 },
+  { name: 'HUL', fullName: 'Nico Hulkenberg', team: 'audi', no: 27 },
+  { name: 'BOR', fullName: 'Gabriel Bortoleto', team: 'audi', no: 85 },
+  { name: 'OCO', fullName: 'Esteban Ocon', team: 'haas', no: 31 },
+  { name: 'BEA', fullName: 'Oliver Bearman', team: 'haas', no: 87 },
+  { name: 'GAS', fullName: 'Pierre Gasly', team: 'alpine', no: 10 },
+  { name: 'DOO', fullName: 'Jack Doohan', team: 'alpine', no: 7 },
+  { name: 'HER', fullName: 'Colton Herta', team: 'cadillac', no: 26 },
+  { name: 'PAL', fullName: 'Alex Palou', team: 'cadillac', no: 28 }
 ];
 
 const generateLapTime = (base = 80) => {
@@ -100,32 +102,34 @@ export default function TelemetryApp() {
         <table>
           <thead>
             <tr>
-              <th>POS</th>
-              <th>NO</th>
-              <th>DRIVER</th>
-              <th>TYRE</th>
-              <th>LAP TIME</th>
-              <th>GAP</th>
-              <th>S1</th>
-              <th>S2</th>
-              <th>S3</th>
+              <th style={{ textAlign: 'center' }}>POS</th>
+              <th style={{ textAlign: 'center' }}>NO</th>
+              <th style={{ textAlign: 'left' }}>DRIVER</th>
+              <th style={{ textAlign: 'center' }}>TYRE</th>
+              <th style={{ textAlign: 'right' }}>LAP TIME</th>
+              <th style={{ textAlign: 'right' }}>GAP</th>
+              <th style={{ textAlign: 'right' }}>S1</th>
+              <th style={{ textAlign: 'right' }}>S2</th>
+              <th style={{ textAlign: 'right' }}>S3</th>
             </tr>
           </thead>
           <tbody>
             {leaderboard.map((driver, index) => (
               <tr key={driver.name}>
-                <td>{index + 1}</td>
-                <td className="driver-no">{(index * 3 + 1)}</td>
-                <td className="driver-name">
-                  <span className={`team-color ${driver.team.replace(/\s+/g, '-').toLowerCase()}`}></span>
+                <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                <td style={{ textAlign: 'center' }} className="driver-no">{driver.no}</td>
+                <td style={{ textAlign: 'left' }} className="driver-name">
+                  <span className={`team-color ${driver.team}`}></span>
                   {driver.name}
                 </td>
-                <td className={`tyre tyre-${driver.tyre}`}>{driver.tyre}</td>
-                <td className="lap-time">{driver.lapTime}</td>
-                <td className="gap">{driver.gap}</td>
-                <td className="sector">{driver.s1}</td>
-                <td className="sector">{driver.s2}</td>
-                <td className="sector">{driver.s3}</td>
+                <td style={{ textAlign: 'center' }}>
+                  <span className={`tyre tyre-${driver.tyre}`}>{driver.tyre}</span>
+                </td>
+                <td style={{ textAlign: 'right' }} className="lap-time">{driver.lapTime}</td>
+                <td style={{ textAlign: 'right' }} className="gap">{driver.gap}</td>
+                <td style={{ textAlign: 'right' }} className="sector">{driver.s1}</td>
+                <td style={{ textAlign: 'right' }} className="sector">{driver.s2}</td>
+                <td style={{ textAlign: 'right' }} className="sector">{driver.s3}</td>
               </tr>
             ))}
           </tbody>
