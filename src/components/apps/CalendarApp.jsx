@@ -46,7 +46,6 @@ export default function CalendarApp() {
           <div 
             key={race.round} 
             className={`race-item ${race.completed ? 'completed' : ''}`}
-            style={{ '--anim-delay': `${index * 0.15}s` }}
           >
             <div className="race-round">R{race.round}</div>
             <div className="race-details">

@@ -50,38 +50,7 @@
 }
 
 .race-item.completed {
-  opacity: 0.6;
-  position: relative;
-  overflow: hidden;
-}
-
-.race-item.completed::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--accent-color);
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left;
-  animation: strike-through 0.6s cubic-bezier(0.8, 0, 0.2, 1) forwards;
-  animation-delay: var(--anim-delay, 0s);
-  box-shadow: 0 0 10px var(--accent-color);
-  z-index: 10;
-}
-
-@keyframes strike-through {
-  to {
-    transform: translateY(-50%) scaleX(1);
-  }
-}
-
-.completed-stamp {
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #ff3333;
-  text-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+  color: #888;
 }
 
 .race-round {
@@ -90,6 +59,10 @@
   font-weight: bold;
   color: var(--accent-color);
   width: 50px;
+}
+
+.race-item.completed .race-round {
+  color: #888;
 }
 
 .race-details {
@@ -104,7 +77,8 @@
 
 .race-track {
   font-size: 0.8rem;
-  color: #aaa;
+  color: inherit;
+  opacity: 0.7;
 }
 
 .race-date {
