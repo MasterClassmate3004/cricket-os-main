@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  background-color: var(--bg-dark);
 }
 
 .top-nav {
@@ -79,7 +80,6 @@
   gap: 1rem;
 }
 
-/* The car stays securely on the right side */
 .hero-car-wrapper {
   position: absolute;
   right: -5%;
@@ -89,6 +89,7 @@
   display: flex;
   align-items: flex-end;
   z-index: 5;
+  mix-blend-mode: screen;
 }
 
 .hero-car {
@@ -96,15 +97,14 @@
   height: auto;
   max-height: 85vh;
   object-fit: contain;
-  filter: drop-shadow(-20px 20px 30px rgba(0,0,0,0.8));
+  mix-blend-mode: screen;
 }
 
 /* Mask to blend non-transparent images seamlessly into the dark background */
 .car-gradient-mask {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--bg-dark) 0%, transparent 20%),
-              linear-gradient(to top, var(--bg-dark) 0%, transparent 20%);
+  background: none;
   pointer-events: none;
 }
 

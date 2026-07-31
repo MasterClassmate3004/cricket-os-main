@@ -85,7 +85,7 @@ export default function Hero({ team, onIgnite }) {
           alt={`${team.name} F1 Car`} 
           className="hero-car" 
           key={team.id}
-          style={{ filter: `${team.filter || ''} drop-shadow(-20px 20px 30px rgba(0,0,0,0.8))` }} 
+          style={{ filter: team.filter || 'none' }} 
         />
         <div className="car-gradient-mask"></div>
       </div>
