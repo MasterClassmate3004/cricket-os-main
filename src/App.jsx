@@ -5,17 +5,18 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Benchmarks from './components/Benchmarks';
 import TeamSelector from './components/TeamSelector';
+import BootScreen from './components/BootScreen';
+import OSInterface from './components/OSInterface';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
-
-import OSInterface from './components/OSInterface';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [selectedTeam, setSelectedTeam] = useState(defaultTeam);
   const [loading, setLoading] = useState(true);
+  const [isBooting, setIsBooting] = useState(false);
   const [isOSActive, setIsOSActive] = useState(false);
 
   useEffect(() => {
@@ -24,14 +25,27 @@ function App() {
     document.documentElement.style.setProperty('--bg-dark', selectedTeam.dark);
   }, [selectedTeam]);
 
+  const handleIgnite = () => {
+    setIsBooting(true);
+  };
+
+  const handleBootComplete = () => {
+    setIsBooting(false);
+    setIsOSActive(true);
+  };
+
   return (
     <>
       {loading && <Loader onComplete={() => setLoading(false)} />}
 
-      {!loading && !isOSActive && (
+      {isBooting && (
+        <BootScreen team={selectedTeam} onComplete={handleBootComplete} />
+      )}
+
+      {!loading && !isOSActive && !isBooting && (
         <div className="app-fade-in">
           <div className="grid-bg"></div>
-          <Hero team={selectedTeam} onIgnite={() => setIsOSActive(true)} />
+          <Hero team={selectedTeam} onIgnite={handleIgnite} />
           <Features />
           <Benchmarks team={selectedTeam} />
           <TeamSelector teams={teams} currentTeam={selectedTeam} onSelect={setSelectedTeam} />
@@ -42,7 +56,7 @@ function App() {
         </div>
       )}
 
-      {!loading && isOSActive && (
+      {!loading && isOSActive && !isBooting && (
         <OSInterface team={selectedTeam} onExit={() => setIsOSActive(false)} />
       )}
     </>

@@ -5,14 +5,17 @@ import DesktopIcon from './DesktopIcon';
 import TelemetryApp from './apps/TelemetryApp';
 import CalendarApp from './apps/CalendarApp';
 import TeamInfoApp from './apps/TeamInfoApp';
-import { Activity, Calendar } from 'lucide-react';
+import CalculatorApp from './apps/CalculatorApp';
+import BootScreen from './BootScreen';
+import { Activity, Calendar, Calculator } from 'lucide-react';
 import './OSInterface.css';
 
 export default function OSInterface({ team, onExit }) {
   const APPS = [
     { id: 'telemetry', label: 'Live Timing', icon: Activity, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
     { id: 'calendar', label: 'Calendar', icon: Calendar, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
-    { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} }
+    { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
+    { id: 'calculator', label: 'Calculator', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} }
   ];
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -54,40 +57,6 @@ export default function OSInterface({ team, onExit }) {
     setIsRebooting(true);
     setOpenWindows([]);
     setSelectedIcon(null);
-
-    // Play startup chime
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AudioContext();
-      const playOscillator = (freq, type, duration) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        
-        gain.gain.setValueAtTime(0, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.1);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-        
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + duration);
-      };
-
-      // F Major 9 chord (Apple-like warmth)
-      playOscillator(174.61, 'sine', 3.5); // F3
-      playOscillator(261.63, 'sine', 3.5); // C4
-      playOscillator(349.23, 'sine', 3.0); // F4
-      playOscillator(440.00, 'sine', 3.0); // A4
-      playOscillator(587.33, 'sine', 3.0); // D5
-    } catch (e) {
-      console.log('Audio not supported or blocked');
-    }
-
-    setTimeout(() => {
-      setIsRebooting(false);
-    }, 2800);
   };
 
   return (
@@ -193,43 +162,7 @@ export default function OSInterface({ team, onExit }) {
       )}
 
       {isRebooting && (
-        <div style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: '#000',
-          zIndex: 99999,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '40px'
-        }}>
-          <style>{`
-            @keyframes reboot-load {
-              0% { transform: translateX(-100%); }
-              100% { transform: translateX(0); }
-            }
-          `}</style>
-          {team.logoUrl ? (
-            <img src={team.logoUrl} alt="Boot Logo" style={{ width: '120px', filter: 'brightness(0) invert(1)' }} />
-          ) : (
-            <div style={{ fontSize: '48px', color: '#fff', fontWeight: 'bold' }}>F1 OS</div>
-          )}
-          <div style={{
-            width: '200px',
-            height: '4px',
-            backgroundColor: 'rgba(255,255,255,0.2)',
-            borderRadius: '2px',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#fff',
-              animation: 'reboot-load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards'
-            }}></div>
-          </div>
-        </div>
+        <BootScreen team={team} onComplete={() => setIsRebooting(false)} />
       )}
     </div>
   );

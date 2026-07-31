@@ -1,0 +1,23 @@
+export const drivers2026 = {
+  1: { name: "Lando Norris", team: "McLaren F1 Team", color: "#FF8700" },
+  3: { name: "Max Verstappen", team: "Red Bull Racing", color: "#3671C6" },
+  5: { name: "Gabriel Bortoleto", team: "Audi F1 Team", color: "#F40000" },
+  6: { name: "Isack Hadjar", team: "Red Bull Racing", color: "#3671C6" },
+  10: { name: "Pierre Gasly", team: "BWT Alpine F1 Team", color: "#FF87BC" },
+  11: { name: "Sergio Perez", team: "Cadillac F1 Team", color: "#000000" },
+  12: { name: "Kimi Antonelli", team: "Mercedes-AMG Petronas F1 Team", color: "#27F4D2" },
+  14: { name: "Fernando Alonso", team: "Aston Martin Aramco F1 Team", color: "#229971" },
+  16: { name: "Charles Leclerc", team: "Scuderia Ferrari", color: "#E8002D" },
+  18: { name: "Lance Stroll", team: "Aston Martin Aramco F1 Team", color: "#229971" },
+  23: { name: "Alex Albon", team: "Williams Racing", color: "#005AFF" },
+  27: { name: "Nico Hulkenberg", team: "Audi F1 Team", color: "#F40000" },
+  30: { name: "Liam Lawson", team: "Visa Cash App RB", color: "#6692FF" },
+  31: { name: "Esteban Ocon", team: "MoneyGram Haas F1 Team", color: "#B6BABD" },
+  43: { name: "Franco Colapinto", team: "BWT Alpine F1 Team", color: "#FF87BC" },
+  44: { name: "Lewis Hamilton", team: "Scuderia Ferrari", color: "#E8002D" },
+  55: { name: "Carlos Sainz", team: "Williams Racing", color: "#005AFF" },
+  63: { name: "George Russell", team: "Mercedes-AMG Petronas F1 Team", color: "#27F4D2" },
+  77: { name: "Valtteri Bottas", team: "Cadillac F1 Team", color: "#000000" },
+  81: { name: "Oscar Piastri", team: "McLaren F1 Team", color: "#FF8700" },
+  87: { name: "Oliver Bearman", team: "MoneyGram Haas F1 Team", color: "#B6BABD" }
+};
