@@ -27,6 +27,21 @@ export default function OSInterface({ team, onExit }) {
   const [maxZIndex, setMaxZIndex] = useState(10);
   const [showPowerDialog, setShowPowerDialog] = useState(false);
   const [isRebooting, setIsRebooting] = useState(false);
+  const [iconPositions, setIconPositions] = useState({
+    telemetry: { x: 20, y: 20 },
+    calendar: { x: 20, y: 150 },
+    teaminfo: { x: 20, y: 280 },
+    calculator: { x: 20, y: 410 },
+    wiki: { x: 140, y: 20 },
+    settings: { x: 140, y: 150 }
+  });
+
+  const handleDragIcon = (id, x, y) => {
+    setIconPositions(prev => ({
+      ...prev,
+      [id]: { x, y }
+    }));
+  };
 
   const handleIconSelect = (id) => {
     setSelectedIcon(selectedIcon === id ? null : id);
@@ -87,8 +102,10 @@ export default function OSInterface({ team, onExit }) {
             iconUrl={app.iconUrl}
             label={app.label}
             isSelected={selectedIcon === app.id}
+            position={iconPositions[app.id]}
             onSelect={handleIconSelect}
             onOpen={handleOpenApp}
+            onDrag={handleDragIcon}
           />
         ))}
       </div>

@@ -5,11 +5,12 @@
   justify-content: center;
   width: 95px;
   height: 110px;
-  margin: 16px;
+  margin: 0px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
+  pointer-events: auto;
 }
 
 .desktop-icon:hover {
