@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import './BootScreen.css';
+import './Startup.css';
 
-export default function BootScreen({ team, onComplete }) {
+export default function Startup({ team, onComplete }) {
   const [progress, setProgress] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
-  // Play Apple-like startup chime with Web Audio API
   useEffect(() => {
     let ctx = null;
     try {
@@ -19,7 +18,6 @@ export default function BootScreen({ team, onComplete }) {
         osc.type = type;
         osc.frequency.setValueAtTime(freq, ctx.currentTime + startTime);
         
-        // Envelope: smooth attack & long acoustic decay
         gain.gain.setValueAtTime(0, ctx.currentTime + startTime);
         gain.gain.linearRampToValueAtTime(maxGain, ctx.currentTime + startTime + 0.15);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + startTime + duration);
@@ -31,13 +29,12 @@ export default function BootScreen({ team, onComplete }) {
         osc.stop(ctx.currentTime + startTime + duration);
       };
 
-      // F-Major 9 Harmonic Chime (Warm macOS Chime emulation)
-      playTone(174.61, 'sine', 0, 3.8, 0.18);   // F3
-      playTone(261.63, 'sine', 0, 3.5, 0.14);   // C4
-      playTone(349.23, 'sine', 0, 3.2, 0.12);   // F4
-      playTone(440.00, 'sine', 0, 3.0, 0.10);   // A4
-      playTone(523.25, 'triangle', 0.02, 2.5, 0.04); // C5 accent
-      playTone(587.33, 'sine', 0, 2.8, 0.08);   // D5
+      playTone(174.61, 'sine', 0, 3.8, 0.18);
+      playTone(261.63, 'sine', 0, 3.5, 0.14);
+      playTone(349.23, 'sine', 0, 3.2, 0.12);
+      playTone(440.00, 'sine', 0, 3.0, 0.10);
+      playTone(523.25, 'triangle', 0.02, 2.5, 0.04);
+      playTone(587.33, 'sine', 0, 2.8, 0.08);
     } catch (e) {
       console.log('Audio Context unavailable:', e);
     }
@@ -47,13 +44,11 @@ export default function BootScreen({ team, onComplete }) {
         try {
           ctx.close();
         } catch (e) {
-          // Ignore cleanup error
         }
       }
     };
   }, []);
 
-  // Simulate macOS Boot Progress bar filling smoothly
   useEffect(() => {
     const steps = [
       { target: 15, delay: 250 },
@@ -73,12 +68,11 @@ export default function BootScreen({ team, onComplete }) {
       timeouts.push(t);
     });
 
-    // Handle complete & fade out into OS
     const finishTimeout = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         if (onComplete) onComplete();
-      }, 600); // smooth CSS fade-out transition duration
+      }, 600);
     }, 3100);
     timeouts.push(finishTimeout);
 
@@ -100,7 +94,6 @@ export default function BootScreen({ team, onComplete }) {
           )}
         </div>
 
-        {/* Pure minimalist Apple Progress Bar */}
         <div className="boot-progress-track">
           <div 
             className="boot-progress-fill" 

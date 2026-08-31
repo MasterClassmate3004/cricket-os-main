@@ -9,7 +9,6 @@ export default function Hero({ team, onIgnite }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Background Text Parallax
       gsap.to(bgTextRef.current, {
         y: 300,
         opacity: 0,
@@ -21,7 +20,6 @@ export default function Hero({ team, onIgnite }) {
         }
       });
 
-      // Car Parallax
       gsap.to(carRef.current, {
         y: -100,
         scale: 1.05,
@@ -33,7 +31,6 @@ export default function Hero({ team, onIgnite }) {
         }
       });
       
-      // Car Entry Animation (runs every time team changes)
       gsap.from(carRef.current, {
         x: 200,
         opacity: 0,
@@ -43,7 +40,7 @@ export default function Hero({ team, onIgnite }) {
     });
 
     return () => ctx.revert();
-  }, [team.id]); // re-run animation on team change
+  }, [team.id]);
 
   return (
     <section className="hero-container">
@@ -53,7 +50,7 @@ export default function Hero({ team, onIgnite }) {
         </div>
         <div className="status-bar">
           <span>TEAM: {team.name}</span>
-          <span style={{ color: 'var(--accent-color)' }}>SYS: OPTIMAL</span>
+          <span style={{ color: 'var(--accent-color)' }}>STATUS: OK</span>
         </div>
       </nav>
 
@@ -62,18 +59,18 @@ export default function Hero({ team, onIgnite }) {
       <div className="hero-content">
         <div className="glass-panel main-panel">
           <h2 className="hero-heading">
-            Engineered for <br/>
-            <span style={{ color: 'var(--accent-color)' }}>Performance</span>
+            F1 Web Desktop <br/>
+            <span style={{ color: 'var(--accent-color)' }}>Dashboard</span>
           </h2>
           <p className="hero-tagline">
-            A lightning-fast, highly-aerodynamic operating system experience. Driven by you.
+            A simple web desktop concept themed after F1. Open timing leaderboards, view driver databases, and adjust steering wheel telemetry modes.
           </p>
           <div className="hero-actions">
             <button className="btn btn-primary" onClick={onIgnite}>
-              <Power size={20} /> Ignite Workspace
+              <Power size={20} /> Launch OS
             </button>
             <button className="btn btn-secondary" onClick={() => document.getElementById('team-selection').scrollIntoView({ behavior: 'smooth' })}>
-              <Terminal size={20} /> Select Constructor
+              <Terminal size={20} /> Choose Team
             </button>
           </div>
         </div>

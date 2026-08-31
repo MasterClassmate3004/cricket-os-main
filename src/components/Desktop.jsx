@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import TopBar from './TopBar';
-import Window from './Window';
-import DesktopIcon from './DesktopIcon';
+import TopBar from './Taskbar';
+import WindowFrame from './WindowFrame';
+import DesktopIcon from './Shortcut';
 import TelemetryApp from './apps/TelemetryApp';
 import CalendarApp from './apps/CalendarApp';
 import TeamInfoApp from './apps/TeamInfoApp';
 import CalculatorApp from './apps/CalculatorApp';
-import BootScreen from './BootScreen';
+import BootScreen from './Startup';
 import { Gauge, Flag, Calculator, Search, Sliders, ArrowLeft, ArrowRight, RefreshCw, BookOpen, User, Shield, Info } from 'lucide-react';
 import { wikiData } from '../data/wikiData';
-import './OSInterface.css';
+import './Desktop.css';
 
-export default function OSInterface({ team, onExit }) {
+export default function Desktop({ team, onExit }) {
   const APPS = [
     { id: 'telemetry', label: 'Live Timing', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
     { id: 'calendar', label: 'Calendar', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
@@ -122,7 +122,7 @@ export default function OSInterface({ team, onExit }) {
         const app = findApp(windowState.id);
         const AppContent = app.component;
         return (
-          <Window
+          <WindowFrame
             key={windowState.id}
             id={windowState.id}
             title={app.label}
@@ -134,7 +134,7 @@ export default function OSInterface({ team, onExit }) {
             onFocus={handleWindowFocus}
           >
             <AppContent team={team} />
-          </Window>
+          </WindowFrame>
         );
       })}
 
@@ -191,7 +191,7 @@ export default function OSInterface({ team, onExit }) {
       )}
 
       {isRebooting && (
-        <BootScreen team={team} onComplete={() => setIsRebooting(false)} />
+        <Startup team={team} onComplete={() => setIsRebooting(false)} />
       )}
     </div>
   );

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import './Loader.css';
+import './PageLoader.css';
 
-export default function Loader({ onComplete }) {
+export default function PageLoader({ onComplete }) {
   const loaderRef = useRef(null);
   const carRef = useRef(null);
 
@@ -17,12 +17,9 @@ export default function Loader({ onComplete }) {
         }
       });
 
-      // Rev up effect
       tl.to(carRef.current, { x: -30, duration: 0.5, ease: 'power2.out', delay: 0.2 })
         .to(carRef.current, { x: 10, duration: 0.1, yoyo: true, repeat: 5 })
-        // Speed off to the right
         .to(carRef.current, { x: window.innerWidth + 300, duration: 0.6, ease: 'power4.in' })
-        // Fade out loader
         .to(loaderRef.current, { opacity: 0, duration: 0.4 }, '-=0.2');
     });
 
@@ -36,7 +33,7 @@ export default function Loader({ onComplete }) {
            <img src="/assets/loader-car.svg" alt="F1 Loader" style={{ width: '250px', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))' }} />
         </div>
       </div>
-      <div className="loader-text">IGNITING KERNEL...</div>
+      <div className="loader-text">LOADING DASHBOARD...</div>
     </div>
   );
 }

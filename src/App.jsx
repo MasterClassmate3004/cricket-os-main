@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { teams, defaultTeam } from './data/teams';
-import Loader from './components/Loader';
+import Loader from './components/PageLoader';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import Benchmarks from './components/Benchmarks';
-import TeamSelector from './components/TeamSelector';
-import BootScreen from './components/BootScreen';
-import OSInterface from './components/OSInterface';
+import Features from './components/SpecsList';
+import Benchmarks from './components/StatsShow';
+import TeamSelector from './components/PickTeam';
+import Startup from './components/Startup';
+import Desktop from './components/Desktop';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css';
@@ -39,7 +39,7 @@ function App() {
       {loading && <Loader onComplete={() => setLoading(false)} />}
 
       {isBooting && (
-        <BootScreen team={selectedTeam} onComplete={handleBootComplete} />
+        <Startup team={selectedTeam} onComplete={handleBootComplete} />
       )}
 
       {!loading && !isOSActive && !isBooting && (
@@ -57,7 +57,7 @@ function App() {
       )}
 
       {!loading && isOSActive && !isBooting && (
-        <OSInterface team={selectedTeam} onExit={() => setIsOSActive(false)} />
+        <Desktop team={selectedTeam} onExit={() => setIsOSActive(false)} />
       )}
     </>
   );

@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import './Window.css';
+import './WindowFrame.css';
 import { Terminal } from 'lucide-react';
 
-export default function Window({ 
+export default function WindowFrame({ 
   id, 
   title = "Welcome", 
   children, 

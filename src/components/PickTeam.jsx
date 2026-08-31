@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function TeamSelector({ teams, currentTeam, onSelect }) {
+export default function PickTeam({ teams, currentTeam, onSelect }) {
   return (
     <section id="team-selection" style={{ padding: '6rem 4rem', background: '#050505', textAlign: 'center' }}>
       <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>CHOOSE YOUR CONSTRUCTOR</h2>
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>Customize your F1 OS experience. Select your team to calibrate system themes.</p>
+        <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>CHOOSE YOUR TEAM</h2>
+        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>Pick your team to change the dashboard styling.</p>
       </div>
 
       <div style={{ 

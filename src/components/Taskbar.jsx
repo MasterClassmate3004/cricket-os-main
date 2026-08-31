@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Settings, Power, Thermometer } from 'lucide-react';
-import './TopBar.css';
+import './Taskbar.css';
 
-export default function TopBar({ team, onExit, apps = [], openWindows = [], onOpenApp }) {
+export default function Taskbar({ team, onExit, apps = [], openWindows = [], onOpenApp }) {
   const [time, setTime] = useState(new Date());
   const [machineTemp, setMachineTemp] = useState(55);
 

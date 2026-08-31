@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-export default function Benchmarks({ team }) {
+export default function StatsShow({ team }) {
   const sectionRef = useRef(null);
   const bootRef = useRef(null);
   const fpsRef = useRef(null);
@@ -9,7 +9,6 @@ export default function Benchmarks({ team }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Counter animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -25,7 +24,6 @@ export default function Benchmarks({ team }) {
         ease: 'back.out(1.7)'
       });
 
-      // Animate numbers
       gsap.to(bootRef.current, {
         innerHTML: 2.1,
         duration: 2,
@@ -55,8 +53,8 @@ export default function Benchmarks({ team }) {
   return (
     <section ref={sectionRef} style={{ padding: '8rem 4rem', background: 'var(--bg-dark)' }}>
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '3.5rem', color: 'var(--primary-color)' }}>Track Proven Performance</h2>
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>Outperforming standard operating systems in every sector.</p>
+        <h2 style={{ fontSize: '3.5rem', color: 'var(--primary-color)' }}>Real Stats</h2>
+        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>Quick overview of system response times.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
@@ -66,7 +64,7 @@ export default function Benchmarks({ team }) {
           <div style={{ fontSize: '5rem', fontWeight: 900, color: 'var(--accent-color)', fontFamily: 'var(--font-mono)' }}>
             <span ref={bootRef}>0</span>s
           </div>
-          <p style={{ marginTop: '1rem' }}>vs 15s Windows Average</p>
+          <p style={{ marginTop: '1rem' }}>vs ~15s standard OS boot</p>
         </div>
 
         <div className="bench-card glass-panel" style={{ textAlign: 'center' }}>
@@ -74,7 +72,7 @@ export default function Benchmarks({ team }) {
           <div style={{ fontSize: '5rem', fontWeight: 900, color: 'var(--primary-color)', fontFamily: 'var(--font-mono)' }}>
             <span ref={fpsRef}>0</span>
           </div>
-          <p style={{ marginTop: '1rem' }}>Locked perfectly to your monitor</p>
+          <p style={{ marginTop: '1rem' }}>Runs at 60+ fps smoothly</p>
         </div>
 
         <div className="bench-card glass-panel" style={{ textAlign: 'center' }}>
@@ -82,7 +80,7 @@ export default function Benchmarks({ team }) {
           <div style={{ fontSize: '5rem', fontWeight: 900, color: 'var(--accent-color)', fontFamily: 'var(--font-mono)' }}>
             <span ref={latencyRef}>0</span>ms
           </div>
-          <p style={{ marginTop: '1rem' }}>Direct kernel-to-hardware pipeline</p>
+          <p style={{ marginTop: '1rem' }}>Responsive input processing</p>
         </div>
 
       </div>
