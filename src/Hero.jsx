@@ -47,7 +47,7 @@ export default function Hero({ team, onIgnite, onChooseTeam }) {
       <nav className="top-nav">
         <div className="logo">
           <span className="logo-mark">R</span>
-          <span>Race Day</span>
+          <span>Formula One OS</span>
         </div>
         <div className="status-bar">
           <span className="following-dot" style={{ backgroundColor: team.accent }}></span>
@@ -62,14 +62,13 @@ export default function Hero({ team, onIgnite, onChooseTeam }) {
         <div className="main-panel">
           <h1 className="hero-heading">What are you in the mood for?</h1>
           <p className="hero-tagline">
-            Pick a starting point. You can always change your mind.
+            The pinnacle of motorsport racing
           </p>
           <div className="choice-list">
             <button className="choice-card choice-card-featured" onClick={() => onIgnite('telemetry')}>
               <span className="choice-icon"><Gauge size={20} /></span>
               <span className="choice-copy">
                 <strong>See who’s quickest</strong>
-                <span>Check the live order and gaps.</span>
               </span>
               <ArrowRight className="choice-arrow" size={20} />
             </button>
@@ -77,7 +76,6 @@ export default function Hero({ team, onIgnite, onChooseTeam }) {
               <span className="choice-icon"><UsersRound size={20} /></span>
               <span className="choice-copy">
                 <strong>Stay close to {team.name}</strong>
-                <span>Drivers, results, and the season so far.</span>
               </span>
               <ArrowRight className="choice-arrow" size={20} />
             </button>
@@ -85,7 +83,6 @@ export default function Hero({ team, onIgnite, onChooseTeam }) {
               <span className="choice-icon"><CalendarDays size={20} /></span>
               <span className="choice-copy">
                 <strong>Find the next race</strong>
-                <span>See where the paddock is heading.</span>
               </span>
               <ArrowRight className="choice-arrow" size={20} />
             </button>
@@ -93,12 +90,10 @@ export default function Hero({ team, onIgnite, onChooseTeam }) {
               <span className="choice-icon"><BookOpen size={20} /></span>
               <span className="choice-copy">
                 <strong>Learn something new</strong>
-                <span>Search the F1 basics and driver stories.</span>
               </span>
               <ArrowRight className="choice-arrow" size={20} />
             </button>
           </div>
-          <p className="hero-note">You choose the pace. The rest can wait.</p>
         </div>
       </div>
 

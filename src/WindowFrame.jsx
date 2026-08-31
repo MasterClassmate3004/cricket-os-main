@@ -127,7 +127,7 @@ export default function WindowFrame({
         {children || (
           <>
             <Terminal size={48} style={{ color: 'var(--accent-color)', marginBottom: '16px' }} />
-            <h1>Welcome to Race Day</h1>
+            <h1>Welcome to Formula One OS</h1>
             <p>
               Your little corner of the season is ready. <br/>
               Pick something you’d like to spend time with.

@@ -76,7 +76,6 @@
   color: var(--accent-color, #e10600);
 }
 
-/* Apple minimalist progress bar */
 .boot-progress-track {
   width: 220px;
   height: 5px;

@@ -33,7 +33,7 @@ export default function PageLoader({ onComplete }) {
            <img src="/assets/loader-car.svg" alt="F1 Loader" style={{ width: '250px', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))' }} />
         </div>
       </div>
-      <div className="loader-text">Setting up your race corner…</div>
+      <div className="loader-text">Starting Formula One OS…</div>
     </div>
   );
 }

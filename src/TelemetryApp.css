@@ -85,7 +85,6 @@
   border-radius: 2px;
 }
 
-/* 2026 Team Colors Approx */
 .team-color.red-bull { background-color: #3671C6; }
 .team-color.ferrari { background-color: #E80020; }
 .team-color.mclaren { background-color: #FF8000; }
@@ -93,7 +92,7 @@
 .team-color.aston-martin { background-color: #229971; }
 .team-color.williams { background-color: #64C4FF; }
 .team-color.racing-bulls { background-color: #6692FF; }
-.team-color.audi { background-color: #F50537; } /* Neon Red for Audi */
+.team-color.audi { background-color: #F50537; }
 .team-color.haas { background-color: #B6BABD; }
 .team-color.alpine { background-color: #FF87BC; }
 .team-color.cadillac { background-color: #C0C0C0; }
@@ -122,5 +121,5 @@
 }
 
 .sector {
-  color: #FFE600; /* Yellow sector */
+  color: #FFE600;
 }

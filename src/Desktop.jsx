@@ -13,12 +13,12 @@ import './Desktop.css';
 
 export default function Desktop({ team, onExit, initialApp = 'telemetry' }) {
   const APPS = [
-    { id: 'telemetry', label: 'Who’s quickest', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
-    { id: 'calendar', label: 'Next race', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
-    { id: 'teaminfo', label: 'My team', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
-    { id: 'calculator', label: 'Car numbers', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} },
-    { id: 'wiki', label: 'Learn', icon: Search, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} },
-    { id: 'settings', label: 'Driving feel', icon: Sliders, component: SettingsApp, defaultPos: {x: 220, y: 150}, defaultSize: {width: 600, height: 480} }
+    { id: 'telemetry', label: 'Live Timing', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
+    { id: 'calendar', label: 'Calendar', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
+    { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
+    { id: 'calculator', label: 'Calculator', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} },
+    { id: 'wiki', label: 'F1 Wiki', icon: Search, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} },
+    { id: 'settings', label: 'Settings', icon: Sliders, component: SettingsApp, defaultPos: {x: 220, y: 150}, defaultSize: {width: 600, height: 480} }
   ];
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -136,19 +136,6 @@ export default function Desktop({ team, onExit, initialApp = 'telemetry' }) {
             onDrag={handleDragIcon}
           />
         ))}
-      </div>
-
-      <div className="desktop-welcome" onClick={(event) => event.stopPropagation()}>
-        <div className="desktop-welcome-mark" style={{ backgroundColor: team.accent }}>
-          {team.name.charAt(0)}
-        </div>
-        <p className="desktop-welcome-kicker">Your race day</p>
-        <h1>Hey, {team.name} is ready.</h1>
-        <p className="desktop-welcome-copy">Pick something to look at. There’s no wrong place to start.</p>
-        <div className="desktop-quick-actions">
-          <button onClick={() => handleOpenApp('telemetry')}>See the order <ArrowRight size={14} /></button>
-          <button onClick={() => handleOpenApp('teaminfo')}>Open my team <ArrowRight size={14} /></button>
-        </div>
       </div>
 
       {openWindows.map(windowState => {

@@ -30,7 +30,7 @@ export default function Taskbar({ team, onExit, apps = [], openWindows = [], onO
       <div className="os-topbar-left">
         <div className="os-topbar-brand">
           <Heart size={17} style={{ color: 'var(--accent-color)' }} />
-          <span>Race Day</span>
+          <span>Formula One OS</span>
           <span className="os-topbar-following">{team.name}</span>
         </div>
       </div>

@@ -58,7 +58,6 @@ export default function CalculatorApp({ team }) {
       default: return String(numB);
     }
     
-    // Prevent ultra-long decimals
     if (result.toString().length > 12 && !result.toString().includes('e')) {
       return result.toFixed(8).replace(/\.?0+$/, '');
     }
@@ -81,7 +80,6 @@ export default function CalculatorApp({ team }) {
 
   const handleEquals = () => {
     if (!operator || prevVal == null) {
-      // Check for easter egg even if no operator (e.g. user typed 44 and hit =)
       checkForEasterEgg(currentVal);
       return;
     }
@@ -92,16 +90,14 @@ export default function CalculatorApp({ team }) {
     setOperator(null);
     setWaitingForNewValue(true);
     
-    checkForEasterEgg(currentVal); // check what user inputted right before equals
+    checkForEasterEgg(currentVal);
   };
 
   const checkForEasterEgg = (value) => {
-    // If it's a valid driver number in 2026
     const driver = drivers2026[value];
     if (driver) {
       setEasterEgg({ number: value, ...driver });
       
-      // Auto dismiss after 3 seconds
       setTimeout(() => {
         setEasterEgg(null);
       }, 3000);
@@ -145,7 +141,6 @@ export default function CalculatorApp({ team }) {
         <button className="calc-btn equals" onClick={handleEquals}>=</button>
       </div>
 
-      {/* Easter Egg Overlay */}
       <div 
         className={`calc-easter-egg ${easterEgg ? 'show' : ''}`}
         style={{ borderColor: easterEgg?.color || '#fff' }}
