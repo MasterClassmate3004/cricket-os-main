@@ -1,30 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Settings, Power, Thermometer } from 'lucide-react';
+import { Heart, Power } from 'lucide-react';
 import './Taskbar.css';
 
 export default function Taskbar({ team, onExit, apps = [], openWindows = [], onOpenApp }) {
   const [time, setTime] = useState(new Date());
-  const [machineTemp, setMachineTemp] = useState(55);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
     }, 1000);
     
-    const tempTimer = setInterval(() => {
-      setMachineTemp(prev => {
-        const change = Math.floor(Math.random() * 3) - 1;
-        const newTemp = prev + change;
-        if (newTemp > 75) return 74;
-        if (newTemp < 45) return 46;
-        return newTemp;
-      });
-    }, 4000);
-    
-    return () => {
-      clearInterval(timer);
-      clearInterval(tempTimer);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   const formattedTime = time.toLocaleTimeString([], { 
@@ -43,8 +29,9 @@ export default function Taskbar({ team, onExit, apps = [], openWindows = [], onO
     <div className="os-topbar">
       <div className="os-topbar-left">
         <div className="os-topbar-brand">
-          <Settings size={18} style={{ color: 'var(--accent-color)' }} />
-          <span>Formula 1 OS</span>
+          <Heart size={17} style={{ color: 'var(--accent-color)' }} />
+          <span>Race Day</span>
+          <span className="os-topbar-following">{team.name}</span>
         </div>
       </div>
       
@@ -60,26 +47,24 @@ export default function Taskbar({ team, onExit, apps = [], openWindows = [], onO
               title={app.label}
             >
               {app.iconUrl ? (
-                <img src={app.iconUrl} alt={app.label} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.6)' }} />
+                <img src={app.iconUrl} alt={app.label} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.15)' }} />
               ) : (
                 <AppIcon size={20} />
               )}
               {isOpen && <div className="os-topbar-app-dot"></div>}
+              <span className="os-topbar-app-label">{app.label}</span>
             </div>
           );
         })}
       </div>
 
       <div className="os-topbar-right">
-        <div className="os-topbar-temp">
-          <Thermometer size={14} style={{ color: machineTemp >= 70 ? '#ff4d4d' : 'var(--text-main)' }} />
-          <span>{machineTemp}°C</span>
-        </div>
         <div className="os-topbar-time">
-          {formattedDate} {formattedTime}
+          {formattedDate} · {formattedTime}
         </div>
         <button className="os-topbar-btn danger" onClick={onExit}>
           <Power size={16} />
+          <span>Leave</span>
         </button>
       </div>
     </div>

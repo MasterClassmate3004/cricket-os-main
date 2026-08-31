@@ -4,13 +4,12 @@
   height: 100%;
   width: 100%;
   color: #fff;
-  background-color: rgba(20, 20, 20, 0.8);
-  border-radius: 8px;
+  background-color: #24211e;
 }
 
 .calendar-header {
   padding: 20px;
-  border-bottom: 2px solid var(--accent-color);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.12);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,15 +18,24 @@
 .calendar-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  letter-spacing: 2px;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.calendar-kicker {
+  margin-bottom: 0.45rem;
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .season-progress {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: 0.8rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 4px 8px;
-  border-radius: 4px;
+  color: var(--text-muted);
+  background-color: rgba(246, 240, 232, 0.06);
+  padding: 6px 9px;
+  border-radius: 999px;
 }
 
 .race-list {
@@ -40,12 +48,12 @@
   display: flex;
   align-items: center;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.09);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .race-item:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(246, 240, 232, 0.05);
   transform: translateX(5px);
 }
 
@@ -54,9 +62,9 @@
 }
 
 .race-round {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--accent-color);
   width: 50px;
 }
@@ -82,11 +90,19 @@
 }
 
 .race-date {
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: bold;
-  background-color: #fff;
-  color: #000;
+  background-color: rgba(246, 240, 232, 0.09);
+  color: var(--text-main);
   padding: 4px 12px;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+
+@media (max-width: 620px) {
+  .calendar-header { align-items: flex-start; gap: 1rem; }
+  .calendar-header h2 { font-size: 1.25rem; }
+  .season-progress { font-size: 0.7rem; }
+  .race-country { font-size: 1rem; }
+  .race-date { font-size: 0.85rem; }
 }

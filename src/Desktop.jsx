@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import TopBar from './Taskbar';
 import WindowFrame from './WindowFrame';
 import DesktopIcon from './Shortcut';
@@ -6,19 +6,19 @@ import TelemetryApp from './TelemetryApp';
 import CalendarApp from './CalendarApp';
 import TeamInfoApp from './TeamInfoApp';
 import CalculatorApp from './CalculatorApp';
-import BootScreen from './Startup';
+import Startup from './Startup';
 import { Gauge, Flag, Calculator, Search, Sliders, ArrowLeft, ArrowRight, RefreshCw, BookOpen, User, Shield, Info } from 'lucide-react';
 import { wikiData } from './wikiData';
 import './Desktop.css';
 
-export default function Desktop({ team, onExit }) {
+export default function Desktop({ team, onExit, initialApp = 'telemetry' }) {
   const APPS = [
-    { id: 'telemetry', label: 'Live Timing', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
-    { id: 'calendar', label: 'Calendar', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
-    { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
-    { id: 'calculator', label: 'Calculator', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} },
-    { id: 'wiki', label: 'F1 Wiki', icon: Search, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} },
-    { id: 'settings', label: 'ECU Settings', icon: Sliders, component: SettingsApp, defaultPos: {x: 220, y: 150}, defaultSize: {width: 600, height: 480} }
+    { id: 'telemetry', label: 'Who’s quickest', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
+    { id: 'calendar', label: 'Next race', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
+    { id: 'teaminfo', label: 'My team', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
+    { id: 'calculator', label: 'Car numbers', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} },
+    { id: 'wiki', label: 'Learn', icon: Search, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} },
+    { id: 'settings', label: 'Driving feel', icon: Sliders, component: SettingsApp, defaultPos: {x: 220, y: 150}, defaultSize: {width: 600, height: 480} }
   ];
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -26,6 +26,7 @@ export default function Desktop({ team, onExit }) {
   const [maxZIndex, setMaxZIndex] = useState(10);
   const [showPowerDialog, setShowPowerDialog] = useState(false);
   const [isRebooting, setIsRebooting] = useState(false);
+  const initialAppOpened = useRef(false);
   const [iconPositions, setIconPositions] = useState({
     telemetry: { x: 20, y: 20 },
     calendar: { x: 20, y: 150 },
@@ -48,18 +49,31 @@ export default function Desktop({ team, onExit }) {
 
   const handleOpenApp = (id) => {
     if (!openWindows.find(w => w.id === id)) {
-      setOpenWindows([...openWindows, { id, zIndex: maxZIndex + 1 }]);
+      setOpenWindows([...openWindows, { id, zIndex: maxZIndex + 1, minimized: false }]);
       setMaxZIndex(maxZIndex + 1);
     } else {
       handleWindowFocus(id);
     }
   };
 
+  useEffect(() => {
+    if (!initialApp || initialAppOpened.current) return;
+    initialAppOpened.current = true;
+    setOpenWindows([{ id: initialApp, zIndex: 11, minimized: false }]);
+    setMaxZIndex(11);
+  }, [initialApp]);
+
   const handleWindowFocus = (id) => {
-    setOpenWindows(openWindows.map(w => 
-      w.id === id ? { ...w, zIndex: maxZIndex + 1 } : w
+    setOpenWindows(openWindows.map(w =>
+      w.id === id ? { ...w, zIndex: maxZIndex + 1, minimized: false } : w
     ));
     setMaxZIndex(maxZIndex + 1);
+  };
+
+  const handleWindowMinimize = (id) => {
+    setOpenWindows(openWindows.map(w =>
+      w.id === id ? { ...w, minimized: true } : w
+    ));
   };
 
   const handleWindowClose = (id) => {
@@ -75,6 +89,12 @@ export default function Desktop({ team, onExit }) {
     setIsRebooting(true);
     setOpenWindows([]);
     setSelectedIcon(null);
+  };
+
+  const handleFreshStart = () => {
+    setIsRebooting(false);
+    setOpenWindows([{ id: initialApp, zIndex: 11, minimized: false }]);
+    setMaxZIndex(11);
   };
 
   const findApp = (id) => {
@@ -118,6 +138,19 @@ export default function Desktop({ team, onExit }) {
         ))}
       </div>
 
+      <div className="desktop-welcome" onClick={(event) => event.stopPropagation()}>
+        <div className="desktop-welcome-mark" style={{ backgroundColor: team.accent }}>
+          {team.name.charAt(0)}
+        </div>
+        <p className="desktop-welcome-kicker">Your race day</p>
+        <h1>Hey, {team.name} is ready.</h1>
+        <p className="desktop-welcome-copy">Pick something to look at. There’s no wrong place to start.</p>
+        <div className="desktop-quick-actions">
+          <button onClick={() => handleOpenApp('telemetry')}>See the order <ArrowRight size={14} /></button>
+          <button onClick={() => handleOpenApp('teaminfo')}>Open my team <ArrowRight size={14} /></button>
+        </div>
+      </div>
+
       {openWindows.map(windowState => {
         const app = findApp(windowState.id);
         const AppContent = app.component;
@@ -132,6 +165,8 @@ export default function Desktop({ team, onExit }) {
             height={app.defaultSize?.height}
             onClose={handleWindowClose}
             onFocus={handleWindowFocus}
+            isMinimized={windowState.minimized}
+            onMinimize={handleWindowMinimize}
           >
             <AppContent team={team} />
           </WindowFrame>
@@ -139,59 +174,22 @@ export default function Desktop({ team, onExit }) {
       })}
 
       {showPowerDialog && (
-        <div className="power-dialog-overlay" style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          backdropFilter: 'blur(10px)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 10000
-        }}>
-          <div className="power-dialog" style={{
-            backgroundColor: 'rgba(20,20,20,0.85)',
-            border: '1px solid var(--accent-color)',
-            padding: '32px',
-            borderRadius: '16px',
-            textAlign: 'center',
-            maxWidth: '400px',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
-          }}>
-            <h2 style={{ marginBottom: '16px', color: '#fff' }}>Power Options</h2>
-            <p style={{ marginBottom: '24px', color: 'var(--text-muted)' }}>What would you like to do?</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <button 
-                onClick={onExit}
-                style={{ padding: '12px', backgroundColor: 'rgba(255,77,77,0.15)', border: '1px solid #ff4d4d', color: '#ff4d4d', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', fontWeight: 'bold' }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,77,77,0.3)'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,77,77,0.15)'}
-              >
-                Retire the Car
-              </button>
-              <button 
-                onClick={handleReboot}
-                style={{ padding: '12px', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s' }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
-              >
-                Go for a Pitstop
-              </button>
-              <button 
-                onClick={() => setShowPowerDialog(false)}
-                style={{ padding: '12px', backgroundColor: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', marginTop: '8px' }}
-                onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
-              >
-                Cancel
-              </button>
+        <div className="power-dialog-overlay">
+          <div className="power-dialog">
+            <p className="power-dialog-kicker">Before you go</p>
+            <h2>Take a breather?</h2>
+            <p className="power-dialog-copy">You can head back to your choices or start this corner fresh.</p>
+            <div className="power-dialog-actions">
+              <button className="power-dialog-primary" onClick={onExit}>Back to choosing</button>
+              <button className="power-dialog-secondary" onClick={handleReboot}>Start fresh</button>
+              <button className="power-dialog-cancel" onClick={() => setShowPowerDialog(false)}>Stay here</button>
             </div>
           </div>
         </div>
       )}
 
       {isRebooting && (
-        <Startup team={team} onComplete={() => setIsRebooting(false)} />
+        <Startup team={team} onComplete={handleFreshStart} />
       )}
     </div>
   );
@@ -199,16 +197,12 @@ export default function Desktop({ team, onExit }) {
 
 function F1WikiApp({ team }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(null);
   const [history, setHistory] = useState([null]);
   const [historyIndex, setHistoryIndex] = useState(0);
 
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setSuggestions([]);
-      return;
-    }
+  const suggestions = useMemo(() => {
+    if (!searchQuery.trim()) return [];
     const query = searchQuery.toLowerCase();
     const matches = [];
     
@@ -223,7 +217,7 @@ function F1WikiApp({ team }) {
       }
     });
     
-    setSuggestions(matches);
+    return matches;
   }, [searchQuery]);
 
   const navigateTo = (pageId) => {
@@ -300,9 +294,9 @@ function F1WikiApp({ team }) {
         </div>
 
         <div className="wiki-address-bar">
-          <div className="wiki-address-protocol">f1://</div>
+          <div className="wiki-address-protocol">learn://</div>
           <div className="wiki-address-url">
-            {currentPage ? `wiki/database/${currentPage}` : 'wiki/home'}
+            {currentPage ? `stories/${currentPage}` : 'start here'}
           </div>
         </div>
 
@@ -311,7 +305,7 @@ function F1WikiApp({ team }) {
             <Search className="wiki-search-icon" size={14} />
             <input
               type="text"
-              placeholder="Search teams or drivers..."
+              placeholder="Try a team or driver…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="wiki-search-input"
@@ -346,13 +340,19 @@ function F1WikiApp({ team }) {
           <div className="wiki-home-page">
             <div className="wiki-home-hero">
               <BookOpen size={48} className="wiki-hero-icon" />
-              <h1>F1 GRID ARCHIVE</h1>
-              <p>Search and retrieve comprehensive wiki articles for all 2026 constructors and drivers.</p>
+              <h1>Learn something new</h1>
+              <p>A friendly place to look up teams, drivers, and the stories behind the race.</p>
             </div>
+
+            <button className="wiki-following-choice" onClick={() => navigateTo(team?.id || 'mclaren')}>
+              <span>Start with the team you’re following</span>
+              <strong>{team?.name || 'McLaren'}</strong>
+              <ArrowRight size={16} />
+            </button>
 
             <div className="wiki-home-sections">
               <div className="wiki-home-section">
-                <h3><Shield size={16} /> Constructors</h3>
+                <h3><Shield size={16} /> Teams</h3>
                 <div className="wiki-home-links">
                   <button onClick={() => navigateTo('mclaren')}>McLaren</button>
                   <button onClick={() => navigateTo('ferrari')}>Ferrari</button>
@@ -369,7 +369,7 @@ function F1WikiApp({ team }) {
               </div>
 
               <div className="wiki-home-section">
-                <h3><User size={16} /> Featured Drivers</h3>
+                <h3><User size={16} /> Drivers you might enjoy</h3>
                 <div className="wiki-home-links">
                   <button onClick={() => navigateTo('norris')}>Lando Norris</button>
                   <button onClick={() => navigateTo('hamilton')}>Lewis Hamilton</button>
@@ -388,7 +388,7 @@ function F1WikiApp({ team }) {
             </div>
 
             <div className="wiki-home-footer">
-              <Info size={12} /> Live telemetry database powered by F1 OS. Select a constructor from the links above or use the top search bar to start browsing.
+              <Info size={12} /> Start wherever you like. Search is here if you already have someone in mind.
             </div>
           </div>
         ) : (
@@ -406,12 +406,12 @@ function F1WikiApp({ team }) {
               </div>
 
               <div className="wiki-section">
-                <h2>History &amp; Regulations Cycle</h2>
+                <h2>The story so far</h2>
                 <p className="wiki-paragraph">{currentArticle.history}</p>
               </div>
 
               <div className="wiki-section">
-                <h2>Historic Achievements</h2>
+                <h2>What they’ve done</h2>
                 <div className="wiki-stats-table">
                   <div className="wiki-table-row">
                     <div className="wiki-table-label">World Championships</div>
@@ -437,7 +437,7 @@ function F1WikiApp({ team }) {
 
             <div className="wiki-article-sidebar">
               <div className="wiki-sidebar-header" style={{ borderBottomColor: currentArticle.accentColor }}>
-                {currentArticle.type === 'driver' ? 'DRIVER PROFILE' : 'CONSTRUCTOR PROFILE'}
+                {currentArticle.type === 'driver' ? 'DRIVER' : 'TEAM'}
               </div>
               
               <div className="wiki-sidebar-logo-container">
@@ -531,7 +531,7 @@ function SettingsApp({ team }) {
       });
 
       setErsStore(prev => {
-        let newErs = prev;
+        let newErs;
         if (mgukMode === 'HOT LAP' || mgukMode === 'OVERTAKE') {
           const dischargeRate = Math.random() * 0.5 + 0.2;
           newErs = prev - dischargeRate;
@@ -559,6 +559,10 @@ function SettingsApp({ team }) {
 
   return (
     <div className="settings-app" style={{ '--accent-color': team?.accent || '#ff4d4d' }}>
+      <div className="settings-intro">
+        <p>Make the car feel like your kind of lap.</p>
+        <span>These are just choices — you can change them whenever you like.</span>
+      </div>
       <div className="rev-lights">
         {[...Array(15)].map((_, i) => {
           const color = i < 5 ? 'green' : i < 10 ? 'red' : 'blue';
@@ -569,15 +573,15 @@ function SettingsApp({ team }) {
       <div className="wheel-display">
         <div className="display-grid">
           <div className="display-stat">
-            <span className="stat-label">ENG TEMP</span>
+            <span className="stat-label">Engine temp</span>
             <span className={`stat-val ${engineTemp > 110 ? 'alert' : ''}`}>{engineTemp}°C</span>
           </div>
           <div className="display-stat">
-            <span className="stat-label">ERS STORE</span>
+            <span className="stat-label">Battery</span>
             <span className="stat-val highlight">{ersStore}%</span>
           </div>
           <div className="display-stat">
-            <span className="stat-label">DRS STATUS</span>
+            <span className="stat-label">DRS</span>
             <span className={`stat-val ${drsStatus ? 'active' : 'inactive'}`}>
               {drsStatus ? 'OPEN' : 'CLOSED'}
             </span>
@@ -587,7 +591,7 @@ function SettingsApp({ team }) {
 
       <div className="settings-grid">
         <div className="settings-card">
-          <div className="card-header">ICE MAPPING</div>
+          <div className="card-header">Power delivery</div>
           <div className="strat-buttons">
             {['STRAT 1', 'STRAT 2', 'STRAT 3', 'STRAT 4'].map(mode => (
               <button
@@ -602,7 +606,7 @@ function SettingsApp({ team }) {
         </div>
 
         <div className="settings-card">
-          <div className="card-header">MGU-K DEPLOY</div>
+          <div className="card-header">Battery assist</div>
           <div className="mguk-modes">
             {['HARVEST', 'BALANCED', 'OVERTAKE', 'HOT LAP'].map(mode => (
               <button
@@ -617,7 +621,7 @@ function SettingsApp({ team }) {
         </div>
 
         <div className="settings-card">
-          <div className="card-header">BRAKE BALANCE / DIFF</div>
+          <div className="card-header">Corner balance</div>
           <div className="bbal-control">
             <div className="control-header">
               <span>BBAL</span>
@@ -654,7 +658,7 @@ function SettingsApp({ team }) {
         </div>
 
         <div className="settings-card flex-card">
-          <div className="card-header">TYRES / DRS</div>
+          <div className="card-header">Tyres and DRS</div>
           <div className="tyre-grid">
             {['SOFT', 'MEDIUM', 'HARD', 'WET'].map(comp => (
               <button

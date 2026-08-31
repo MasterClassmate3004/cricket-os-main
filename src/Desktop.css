@@ -919,3 +919,317 @@
   color: #000;
   box-shadow: 0 0 6px #39FF14;
 }
+
+/* The workspace should feel like a calm personal corner, not a cockpit. */
+.os-interface {
+  background:
+    radial-gradient(circle at 78% 32%, color-mix(in srgb, var(--accent-color) 12%, transparent), transparent 30%),
+    #171614;
+}
+
+.os-interface .grid-bg { display: none; }
+
+.team-glow {
+  background: radial-gradient(circle at 70% 30%, var(--accent-color) 0%, transparent 62%);
+  opacity: 0.08;
+}
+
+.team-watermark {
+  width: min(52vw, 660px);
+  opacity: 0.025;
+  filter: grayscale(100%) brightness(170%);
+}
+
+.desktop-area {
+  top: 56px;
+}
+
+.desktop-icon {
+  width: 118px;
+  height: 112px;
+  border-radius: 14px;
+}
+
+.desktop-icon:hover,
+.desktop-icon.selected {
+  background-color: rgba(246, 240, 232, 0.07);
+  border-color: rgba(246, 240, 232, 0.1);
+  box-shadow: none;
+}
+
+.desktop-icon-image {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(246, 240, 232, 0.16);
+  border-radius: 16px;
+  background: rgba(246, 240, 232, 0.055);
+  box-shadow: none;
+}
+
+.desktop-icon:hover .desktop-icon-image,
+.desktop-icon.selected .desktop-icon-image {
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent-color) 15%, transparent);
+  color: var(--accent-color);
+}
+
+.desktop-icon-label {
+  margin-top: 0.15rem;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-shadow: none;
+}
+
+.desktop-welcome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(430px, 42vw);
+  transform: translate(-36%, -44%);
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.desktop-welcome-mark {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #171614;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.desktop-welcome-kicker,
+.power-dialog-kicker {
+  color: var(--accent-color);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.55rem;
+}
+
+.desktop-welcome h1 {
+  max-width: 400px;
+  color: var(--text-main);
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+  margin-bottom: 1rem;
+}
+
+.desktop-welcome-copy {
+  max-width: 320px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.desktop-quick-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.desktop-quick-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(246, 240, 232, 0.18);
+  border-radius: 999px;
+  background: rgba(246, 240, 232, 0.055);
+  color: var(--text-main);
+  padding: 0.6rem 0.85rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.desktop-quick-actions button:hover {
+  background: color-mix(in srgb, var(--accent-color) 15%, transparent);
+  border-color: var(--accent-color);
+}
+
+.power-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  background: rgba(10, 9, 8, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.power-dialog {
+  width: min(390px, 100%);
+  padding: 2rem;
+  border: 1px solid rgba(246, 240, 232, 0.14);
+  border-radius: 20px;
+  background: #24211e;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.power-dialog h2 {
+  color: var(--text-main);
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.power-dialog-copy {
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.power-dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.power-dialog-actions button {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.power-dialog-primary {
+  border: 1px solid var(--accent-color);
+  background: var(--accent-color);
+  color: #1c150e;
+  font-weight: 650;
+}
+
+.power-dialog-primary:hover { background: #ff9d31; }
+
+.power-dialog-secondary {
+  border: 1px solid rgba(246, 240, 232, 0.2);
+  background: transparent;
+  color: var(--text-main);
+}
+
+.power-dialog-secondary:hover { background: rgba(246, 240, 232, 0.08); }
+
+.power-dialog-cancel {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.power-dialog-cancel:hover { color: var(--text-main); }
+
+@media (max-width: 900px) {
+  .desktop-welcome { left: auto; right: 4vw; width: min(340px, 48vw); transform: translateY(-35%); }
+}
+
+@media (max-width: 620px) {
+  .desktop-area { top: 56px; }
+  .desktop-icon { width: 94px; }
+  .desktop-welcome { left: 1.2rem; right: 1.2rem; bottom: 2rem; top: auto; width: auto; transform: none; }
+  .desktop-welcome h1 { font-size: 2.5rem; }
+  .desktop-welcome-copy { font-size: 0.86rem; }
+}
+
+/* Learn: a reference shelf, rather than a database terminal. */
+.wiki-app {
+  background: #24211e;
+  font-family: var(--font-heading);
+  border-radius: 0;
+}
+
+.wiki-browser-header {
+  padding: 10px 14px;
+  background: rgba(246, 240, 232, 0.035);
+  border-bottom-color: rgba(246, 240, 232, 0.1);
+}
+
+.wiki-nav-btn { border-radius: 8px; color: var(--text-muted); }
+.wiki-nav-btn:hover:not(:disabled) { background: rgba(246, 240, 232, 0.08); color: var(--text-main); }
+.wiki-address-bar { background: rgba(0, 0, 0, 0.12); border-color: rgba(246, 240, 232, 0.1); border-radius: 9px; font-family: var(--font-heading); }
+.wiki-address-url { color: var(--text-muted); }
+.wiki-search-input { background: rgba(0, 0, 0, 0.16); border-color: rgba(246, 240, 232, 0.12); border-radius: 9px; font-family: var(--font-heading); }
+
+.wiki-home-page {
+  align-items: stretch;
+  justify-content: flex-start;
+  max-width: 760px;
+  text-align: left;
+  padding: 2rem 0;
+}
+
+.wiki-home-hero { margin-bottom: 1rem; }
+.wiki-hero-icon { width: 32px; height: 32px; margin-bottom: 1rem; filter: none; }
+.wiki-home-hero h1 { font-size: 2.35rem; line-height: 1; letter-spacing: -0.06em; font-weight: 600; }
+.wiki-home-hero p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; max-width: 450px; }
+
+.wiki-following-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 55%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent-color) 8%, transparent);
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wiki-following-choice strong { color: var(--text-main); font-weight: 600; }
+.wiki-following-choice svg { margin-left: auto; color: var(--accent-color); }
+.wiki-following-choice:hover { background: color-mix(in srgb, var(--accent-color) 14%, transparent); }
+
+.wiki-home-sections { gap: 0.75rem; margin-bottom: 1.2rem; }
+.wiki-home-section { background: rgba(246, 240, 232, 0.035); border-color: rgba(246, 240, 232, 0.1); border-radius: 12px; padding: 1rem; }
+.wiki-home-section h3 { color: var(--text-main); letter-spacing: 0; font-size: 0.84rem; font-weight: 600; }
+.wiki-home-links button { background: rgba(246, 240, 232, 0.045); border-color: rgba(246, 240, 232, 0.1); border-radius: 8px; color: var(--text-muted); font-family: var(--font-heading); }
+.wiki-home-links button:hover { background: rgba(246, 240, 232, 0.09); color: var(--text-main); transform: none; }
+.wiki-home-footer { justify-content: flex-start; color: var(--text-muted); font-size: 0.72rem; margin-top: auto; }
+.wiki-section h2 { color: var(--accent-color); letter-spacing: -0.02em; font-size: 1rem; }
+.wiki-sidebar-header, .wiki-info-label { letter-spacing: 0; text-transform: none; }
+.wiki-article-sidebar { background: rgba(246, 240, 232, 0.035); border-color: rgba(246, 240, 232, 0.1); border-radius: 12px; }
+
+/* Driving feel: keep the real controls, soften the machine language around them. */
+.settings-app {
+  background: #24211e;
+  font-family: var(--font-heading);
+  padding: 14px;
+  gap: 10px;
+}
+
+.settings-intro { padding: 0.2rem 0.1rem 0.35rem; }
+.settings-intro p { margin: 0 0 0.25rem; color: var(--text-main); font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; }
+.settings-intro span { color: var(--text-muted); font-size: 0.75rem; }
+.rev-lights { opacity: 0.72; background: rgba(0, 0, 0, 0.2); border-color: rgba(246, 240, 232, 0.08); }
+.wheel-display { background: rgba(0, 0, 0, 0.18); border-color: rgba(246, 240, 232, 0.1); box-shadow: none; }
+.settings-card { background: rgba(246, 240, 232, 0.035); border-color: rgba(246, 240, 232, 0.1); border-radius: 12px; }
+.settings-app .card-header { font-family: var(--font-heading); color: var(--text-main); letter-spacing: 0; text-transform: none; font-size: 0.78rem; font-weight: 600; }
+.settings-app .stat-label { font-family: var(--font-heading); color: var(--text-muted); letter-spacing: 0; font-size: 0.68rem; }
+.settings-app .stat-val { font-family: var(--font-heading); font-size: 1rem; }
+.strat-btn, .mguk-btn, .tyre-btn, .drs-btn { border-radius: 8px; font-family: var(--font-heading); font-size: 0.7rem; }
+
+@media (max-width: 620px) {
+  .wiki-browser-header { flex-wrap: wrap; }
+  .wiki-address-bar { order: 3; flex-basis: 100%; }
+  .wiki-search-form { width: min(220px, 55vw); }
+  .wiki-home-sections { grid-template-columns: 1fr; }
+  .wiki-home-page { padding-top: 1rem; }
+  .wiki-article-container { grid-template-columns: 1fr; }
+}

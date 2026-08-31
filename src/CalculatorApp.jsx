@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { drivers2026 } from './drivers2026';
 import './CalculatorApp.css';
 
@@ -36,11 +36,6 @@ export default function CalculatorApp({ team }) {
     setWaitingForNewValue(false);
   };
 
-  const handleBackspace = () => {
-    if (waitingForNewValue) return;
-    setCurrentVal(currentVal.length > 1 ? currentVal.slice(0, -1) : '0');
-  };
-
   const handleToggleSign = () => {
     setCurrentVal((parseFloat(currentVal) * -1).toString());
   };
@@ -54,7 +49,7 @@ export default function CalculatorApp({ team }) {
     const numB = parseFloat(b);
     if (isNaN(numA) || isNaN(numB)) return String(numB || 0);
 
-    let result = 0;
+    let result;
     switch (op) {
       case '+': result = numA + numB; break;
       case '-': result = numA - numB; break;
@@ -71,8 +66,6 @@ export default function CalculatorApp({ team }) {
   };
 
   const handleOperator = (nextOperator) => {
-    const inputValue = parseFloat(currentVal);
-    
     if (prevVal == null) {
       setPrevVal(currentVal);
     } else if (operator) {
@@ -157,7 +150,7 @@ export default function CalculatorApp({ team }) {
         className={`calc-easter-egg ${easterEgg ? 'show' : ''}`}
         style={{ borderColor: easterEgg?.color || '#fff' }}
       >
-        <div className="easter-egg-header">2026 Driver Profile</div>
+        <div className="easter-egg-header">You found a driver</div>
         <div className="easter-egg-number" style={{ color: easterEgg?.color || '#fff' }}>
           #{easterEgg?.number}
         </div>

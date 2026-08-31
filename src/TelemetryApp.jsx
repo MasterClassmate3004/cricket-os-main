@@ -37,74 +37,53 @@ const generateSector = () => {
   return (20 + Math.random() * 5).toFixed(1);
 };
 
+const buildLeaderboard = () => {
+  const mustBeTop4 = ['HAM', 'RUS', 'ANT', 'VER'];
+  const topPool = ['HAD', 'LEC', 'NOR', 'PIA', 'LIN', 'LAW', 'GAS', 'COL'];
+  const midPool = ['BEA', 'OCO', 'ALB', 'SAI', 'BOR', 'HUL'];
+  const bottom4Pool = ['STR', 'ALO', 'PER', 'BOT'];
+  const shuffle = (array) => array.sort(() => 0.5 - Math.random());
+
+  const shuffledTopPool = shuffle([...topPool]);
+  const top6Names = [...mustBeTop4, ...shuffledTopPool.splice(0, 2)];
+  const pos7to10Names = shuffledTopPool.splice(0, 4);
+  const pos11to18Names = shuffle([...midPool, ...shuffledTopPool]);
+
+  const getBaseTime = (name) => {
+    if (top6Names.includes(name)) return 70;
+    if (pos7to10Names.includes(name)) return 76;
+    if (pos11to18Names.includes(name)) return 82;
+    if (bottom4Pool.includes(name)) return 88;
+    return 82;
+  };
+
+  const initialData = DRIVERS_2026.map(driver => ({
+    ...driver,
+    lapTime: generateLapTime(getBaseTime(driver.name)),
+    s1: generateSector(),
+    s2: generateSector(),
+    s3: generateSector(),
+    gap: 0,
+    tyre: ['S', 'M', 'H'][Math.floor(Math.random() * 3)]
+  })).sort((a, b) => a.lapTime.localeCompare(b.lapTime));
+
+  const parseTime = (str) => {
+    const [minutes, seconds] = str.split(':');
+    return parseInt(minutes) * 60 + parseFloat(seconds);
+  };
+  const baseTime = parseTime(initialData[0].lapTime);
+
+  return initialData.map((driver, index) => {
+    if (index === 0) return { ...driver, gap: 'Interval' };
+    const diff = parseTime(driver.lapTime) - baseTime;
+    return { ...driver, gap: `+${diff.toFixed(3)}s` };
+  });
+};
+
 export default function TelemetryApp() {
-  const [leaderboard, setLeaderboard] = useState([]);
+  const [leaderboard, setLeaderboard] = useState(buildLeaderboard);
 
   useEffect(() => {
-    // 1. Define sets
-    const mustBeTop4 = ['HAM', 'RUS', 'ANT', 'VER'];
-    const topPool = ['HAD', 'LEC', 'NOR', 'PIA', 'LIN', 'LAW', 'GAS', 'COL']; // 8 drivers
-    const midPool = ['BEA', 'OCO', 'ALB', 'SAI', 'BOR', 'HUL']; // 6 drivers
-    const bottom4Pool = ['STR', 'ALO', 'PER', 'BOT']; // 4 drivers (Aston Martin + Cadillac)
-
-    // 2. Shuffle helper
-    const shuffle = (array) => array.sort(() => 0.5 - Math.random());
-
-    // 3. Top 6 (Tier 1: 1-6)
-    const shuffledTopPool = shuffle([...topPool]);
-    const top6Extra = shuffledTopPool.splice(0, 2); // Take 2
-    const top6Names = [...mustBeTop4, ...top6Extra];
-
-    // 4. Pos 7-10 (Tier 2: 7-10)
-    const pos7to10Names = shuffledTopPool.splice(0, 4); // Take next 4
-
-    // 5. Pos 11-18 (Tier 3: 11-18)
-    // The remaining 2 from shuffledTopPool spill over here
-    const spillOver = shuffledTopPool;
-    const pos11to18Names = shuffle([...midPool, ...spillOver]); // 6 + 2 = 8 drivers
-
-    // 6. Pos 19-22 (Tier 4: 19-22)
-    const pos19to22Names = bottom4Pool;
-
-    const getBaseTime = (name) => {
-      if (top6Names.includes(name)) return 70; // 1-6
-      if (pos7to10Names.includes(name)) return 76; // 7-10
-      if (pos11to18Names.includes(name)) return 82; // 11-18
-      if (pos19to22Names.includes(name)) return 88; // 19-22
-      return 82;
-    };
-
-    const initialData = DRIVERS_2026.map(driver => ({
-      ...driver,
-      lapTime: generateLapTime(getBaseTime(driver.name)),
-      s1: generateSector(),
-      s2: generateSector(),
-      s3: generateSector(),
-      gap: 0,
-      tyre: ['S', 'M', 'H'][Math.floor(Math.random() * 3)]
-    })).sort((a, b) => {
-      if (a.lapTime < b.lapTime) return -1;
-      if (a.lapTime > b.lapTime) return 1;
-      return 0;
-    });
-    
-    // Calculate gaps
-    const baseTimeStr = initialData[0].lapTime;
-    const parseTime = (str) => {
-      const [m, s] = str.split(':');
-      return parseInt(m) * 60 + parseFloat(s);
-    };
-    const baseTime = parseTime(baseTimeStr);
-
-    const dataWithGaps = initialData.map((d, i) => {
-      if (i === 0) return { ...d, gap: 'Interval' };
-      const diff = parseTime(d.lapTime) - baseTime;
-      return { ...d, gap: `+${diff.toFixed(3)}s` };
-    });
-
-    setLeaderboard(dataWithGaps);
-
-    // Random updates simulation
     const interval = setInterval(() => {
       setLeaderboard(prev => {
         const newData = [...prev];
@@ -121,25 +100,25 @@ export default function TelemetryApp() {
     <div className="telemetry-app">
       <div className="telemetry-header">
         <div className="track-info">
-          <h3>BAHRAIN GRAND PRIX 2026</h3>
-          <p>LIVE TIMING - FP1</p>
+          <p className="telemetry-kicker">Practice session · live order</p>
+          <h3>Who’s quickest right now?</h3>
         </div>
         <div className="weather-info">
-          <span>AIR: 24°C</span>
-          <span>TRACK: 31°C</span>
-          <span>HUMIDITY: 45%</span>
+          <span>Air 24°C</span>
+          <span>Track 31°C</span>
+          <span>Humidity 45%</span>
         </div>
       </div>
       <div className="leaderboard">
         <table>
           <thead>
             <tr>
-              <th style={{ textAlign: 'center' }}>POS</th>
-              <th style={{ textAlign: 'center' }}>NO</th>
-              <th style={{ textAlign: 'left' }}>DRIVER</th>
-              <th style={{ textAlign: 'center' }}>TYRE</th>
-              <th style={{ textAlign: 'right' }}>LAP TIME</th>
-              <th style={{ textAlign: 'right' }}>GAP</th>
+              <th style={{ textAlign: 'center' }}>#</th>
+              <th style={{ textAlign: 'center' }}>Car</th>
+              <th style={{ textAlign: 'left' }}>Driver</th>
+              <th style={{ textAlign: 'center' }}>Tyre</th>
+              <th style={{ textAlign: 'right' }}>Lap</th>
+              <th style={{ textAlign: 'right' }}>Gap</th>
               <th style={{ textAlign: 'right' }}>S1</th>
               <th style={{ textAlign: 'right' }}>S2</th>
               <th style={{ textAlign: 'right' }}>S3</th>

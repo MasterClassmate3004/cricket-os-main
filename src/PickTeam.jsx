@@ -1,61 +1,38 @@
-import React from 'react';
+import { ArrowUpRight, Check } from 'lucide-react';
+import './PickTeam.css';
 
 export default function PickTeam({ teams, currentTeam, onSelect }) {
   return (
-    <section id="team-selection" style={{ padding: '6rem 4rem', background: '#050505', textAlign: 'center' }}>
-      <div style={{ marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>CHOOSE YOUR TEAM</h2>
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>Pick your team to change the dashboard styling.</p>
+    <section id="team-selection" className="team-selection">
+      <div className="team-selection-intro">
+        <div>
+          <h2>Who are you following?</h2>
+          <p>Tell me who you care about. I’ll carry that choice with you.</p>
+        </div>
+        <div className="selected-team-note">
+          <span className="selected-team-dot" style={{ backgroundColor: currentTeam.accent }}></span>
+          <span>You’re following <strong>{currentTeam.name}</strong></span>
+        </div>
       </div>
 
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-        gap: '1.5rem', 
-        maxWidth: '1200px', 
-        margin: '0 auto' 
-      }}>
+      <div className="team-choice-grid">
         {teams.map(team => {
           const isActive = team.id === currentTeam.id;
           return (
-            <div 
+            <button
               key={team.id}
               onClick={() => onSelect(team)}
-              style={{
-                background: 'var(--bg-panel)',
-                padding: '2rem',
-                border: `1px solid ${isActive ? team.accent : 'rgba(255,255,255,0.1)'}`,
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '1rem',
-                transform: isActive ? 'translateY(-5px)' : 'none',
-                boxShadow: isActive ? `0 10px 20px rgba(0,0,0,0.5)` : 'none'
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.borderColor = team.accent;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
-                }
-              }}
+              className={`team-choice ${isActive ? 'is-active' : ''}`}
+              style={{ '--team-accent': team.accent, '--team-primary': team.primary }}
             >
-              <div style={{
-                width: '50px', height: '50px',
-                borderRadius: '50%',
-                background: team.primary,
-                border: `2px solid ${team.accent}`
-              }}></div>
-              <h3 style={{ fontSize: '1.2rem' }}>{team.name}</h3>
-            </div>
+              <span className="team-choice-topline">
+                <img src={team.logoUrl} alt="" />
+                {isActive && <span className="team-check"><Check size={14} /></span>}
+              </span>
+              <span className="team-choice-name">{team.name}</span>
+              <span className="team-choice-drivers">{team.drivers.map(driver => driver.name).join(' · ')}</span>
+              <span className="team-choice-action">{isActive ? 'Your team' : 'Follow this team'} <ArrowUpRight size={15} /></span>
+            </button>
           );
         })}
       </div>

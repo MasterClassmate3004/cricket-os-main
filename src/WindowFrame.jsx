@@ -11,14 +11,15 @@ export default function WindowFrame({
   zIndex = 10,
   initialPosition = { x: 50, y: 50 },
   width = 600,
-  height = 400
+  height = 400,
+  isMinimized = false,
+  onMinimize
 }) {
   const [position, setPosition] = useState(initialPosition);
   const [size, setSize] = useState({ width, height });
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
   
   const dragRef = useRef({ startX: 0, startY: 0, initX: 0, initY: 0 });
   const resizeRef = useRef({ startX: 0, startY: 0, initWidth: 0, initHeight: 0 });
@@ -99,12 +100,6 @@ export default function WindowFrame({
     if (onFocus) onFocus(id);
   };
 
-  useEffect(() => {
-    if (isMinimized) {
-      setIsMinimized(false);
-    }
-  }, [zIndex]);
-
   return (
     <div 
       className="os-window" 
@@ -123,7 +118,7 @@ export default function WindowFrame({
       <div className="os-window-header" onMouseDown={handleMouseDown}>
         <div className="os-window-controls">
           <div className="os-window-dot close" onClick={(e) => { e.stopPropagation(); if (onClose) onClose(id); }}></div>
-          <div className="os-window-dot minimize" onClick={(e) => { e.stopPropagation(); setIsMinimized(true); }}></div>
+          <div className="os-window-dot minimize" onClick={(e) => { e.stopPropagation(); if (onMinimize) onMinimize(id); }}></div>
           <div className="os-window-dot maximize" onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); if (onFocus) onFocus(id); }}></div>
         </div>
         <div className="os-window-title">{title}</div>
@@ -132,10 +127,10 @@ export default function WindowFrame({
         {children || (
           <>
             <Terminal size={48} style={{ color: 'var(--accent-color)', marginBottom: '16px' }} />
-            <h1>Welcome to Formula 1 OS</h1>
+            <h1>Welcome to Race Day</h1>
             <p>
-              Your high-performance workspace is ready. <br/>
-              Telemetry systems online. Engine parameters optimal.
+              Your little corner of the season is ready. <br/>
+              Pick something you’d like to spend time with.
             </p>
           </>
         )}

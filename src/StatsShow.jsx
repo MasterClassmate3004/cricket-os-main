@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-export default function StatsShow({ team }) {
+export default function StatsShow() {
   const sectionRef = useRef(null);
   const bootRef = useRef(null);
   const fpsRef = useRef(null);

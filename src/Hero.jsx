@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { Power, Terminal, Settings } from 'lucide-react';
+import { ArrowRight, BookOpen, CalendarDays, Gauge, UsersRound } from 'lucide-react';
 import { gsap } from 'gsap';
 import './Hero.css';
 
-export default function Hero({ team, onIgnite }) {
+export default function Hero({ team, onIgnite, onChooseTeam }) {
   const bgTextRef = useRef(null);
   const carRef = useRef(null);
 
@@ -45,34 +45,60 @@ export default function Hero({ team, onIgnite }) {
   return (
     <section className="hero-container">
       <nav className="top-nav">
-        <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Settings className="gear-icon" size={24} /> F1 OS
+        <div className="logo">
+          <span className="logo-mark">R</span>
+          <span>Race Day</span>
         </div>
         <div className="status-bar">
-          <span>TEAM: {team.name}</span>
-          <span style={{ color: 'var(--accent-color)' }}>STATUS: OK</span>
+          <span className="following-dot" style={{ backgroundColor: team.accent }}></span>
+          <span>Following {team.name}</span>
+          <button className="change-team-button" onClick={onChooseTeam}>Change team</button>
         </div>
       </nav>
 
-      <h1 className="bg-text" ref={bgTextRef}>THE GRID</h1>
+      <div className="bg-text" ref={bgTextRef}>RACE DAY</div>
 
       <div className="hero-content">
-        <div className="glass-panel main-panel">
-          <h2 className="hero-heading">
-            F1 Web Desktop <br/>
-            <span style={{ color: 'var(--accent-color)' }}>Dashboard</span>
-          </h2>
+        <div className="main-panel">
+          <h1 className="hero-heading">What are you in the mood for?</h1>
           <p className="hero-tagline">
-            A simple web desktop concept themed after F1. Open timing leaderboards, view driver databases, and adjust steering wheel telemetry modes.
+            Pick a starting point. You can always change your mind.
           </p>
-          <div className="hero-actions">
-            <button className="btn btn-primary" onClick={onIgnite}>
-              <Power size={20} /> Launch OS
+          <div className="choice-list">
+            <button className="choice-card choice-card-featured" onClick={() => onIgnite('telemetry')}>
+              <span className="choice-icon"><Gauge size={20} /></span>
+              <span className="choice-copy">
+                <strong>See who’s quickest</strong>
+                <span>Check the live order and gaps.</span>
+              </span>
+              <ArrowRight className="choice-arrow" size={20} />
             </button>
-            <button className="btn btn-secondary" onClick={() => document.getElementById('team-selection').scrollIntoView({ behavior: 'smooth' })}>
-              <Terminal size={20} /> Choose Team
+            <button className="choice-card" onClick={() => onIgnite('teaminfo')}>
+              <span className="choice-icon"><UsersRound size={20} /></span>
+              <span className="choice-copy">
+                <strong>Stay close to {team.name}</strong>
+                <span>Drivers, results, and the season so far.</span>
+              </span>
+              <ArrowRight className="choice-arrow" size={20} />
+            </button>
+            <button className="choice-card" onClick={() => onIgnite('calendar')}>
+              <span className="choice-icon"><CalendarDays size={20} /></span>
+              <span className="choice-copy">
+                <strong>Find the next race</strong>
+                <span>See where the paddock is heading.</span>
+              </span>
+              <ArrowRight className="choice-arrow" size={20} />
+            </button>
+            <button className="choice-card" onClick={() => onIgnite('wiki')}>
+              <span className="choice-icon"><BookOpen size={20} /></span>
+              <span className="choice-copy">
+                <strong>Learn something new</strong>
+                <span>Search the F1 basics and driver stories.</span>
+              </span>
+              <ArrowRight className="choice-arrow" size={20} />
             </button>
           </div>
+          <p className="hero-note">You choose the pace. The rest can wait.</p>
         </div>
       </div>
 
@@ -85,6 +111,11 @@ export default function Hero({ team, onIgnite }) {
           style={{ filter: team.filter || 'none' }} 
         />
         <div className="car-gradient-mask"></div>
+        <div className="hero-art-caption">
+          <span>Right now</span>
+          <strong>{team.name}</strong>
+          <small>{team.drivers.map(driver => driver.name).join(' · ')}</small>
+        </div>
       </div>
     </section>
   );

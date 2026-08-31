@@ -43,13 +43,16 @@ export default function CalendarApp() {
   return (
     <div className="calendar-app">
       <div className="calendar-header">
-        <h2>2026 RACE CALENDAR</h2>
+        <div>
+          <p className="calendar-kicker">The season ahead</p>
+          <h2>Where’s the paddock heading next?</h2>
+        </div>
         <div className="season-progress">
-          ROUND 15 OF 24
+          Round 15 of 24
         </div>
       </div>
       <div className="race-list">
-        {RACES_2026.map((race, index) => (
+        {RACES_2026.map((race) => (
           <div 
             key={race.round} 
             className={`race-item ${race.completed ? 'completed' : ''}`}

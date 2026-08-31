@@ -4,29 +4,28 @@
   height: 100%;
   width: 100%;
   color: #fff;
-  font-family: var(--font-mono);
-  background-color: rgba(10, 10, 10, 0.6);
-  border-radius: 8px;
+  font-family: var(--font-heading);
+  background-color: #24211e;
 }
 
 .telemetry-header {
   display: flex;
   justify-content: space-between;
   padding: 12px 20px;
-  background: linear-gradient(90deg, rgba(235, 10, 30, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--accent-color) 6%, transparent);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.1);
 }
 
 .track-info h3 {
   margin: 0 0 4px 0;
   font-size: 1.2rem;
-  letter-spacing: 1px;
+  letter-spacing: -0.04em;
 }
 
-.track-info p {
+.telemetry-kicker {
   margin: 0;
-  color: #ff3333;
-  font-weight: bold;
+  color: var(--accent-color);
+  font-weight: 600;
   font-size: 0.8rem;
 }
 
@@ -34,7 +33,7 @@
   display: flex;
   gap: 16px;
   font-size: 0.8rem;
-  color: #ccc;
+  color: var(--text-muted);
   align-items: flex-end;
 }
 
@@ -53,22 +52,22 @@
 .leaderboard th {
   text-align: left;
   padding: 8px;
-  color: #888;
+  color: var(--text-muted);
   font-weight: normal;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.1);
   position: sticky;
   top: 0;
-  background-color: #111;
+  background-color: #24211e;
   z-index: 2;
 }
 
 .leaderboard td {
   padding: 6px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.06);
 }
 
 .leaderboard tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(246, 240, 232, 0.05);
 }
 
 .driver-name {

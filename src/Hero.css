@@ -1,111 +1,258 @@
 .hero-container {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
   overflow: hidden;
   background-color: var(--bg-dark);
+  isolation: isolate;
 }
 
 .top-nav {
   position: absolute;
   top: 0; left: 0; width: 100%;
-  padding: 2rem 4rem;
+  padding: 1.8rem clamp(1.25rem, 6vw, 6rem);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 100;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
 }
 
-.gear-icon {
-  animation: spinGear 6s linear infinite;
-}
-
-@keyframes spinGear {
-  100% { transform: rotate(360deg); }
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--accent-color);
+  color: #22170d;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .status-bar {
-  font-family: var(--font-mono);
   display: flex;
-  gap: 2rem;
-  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
 }
 
-/* Push text to background */
+.following-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(246, 240, 232, 0.08);
+}
+
+.change-team-button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgba(246, 240, 232, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.change-team-button:hover {
+  background: rgba(246, 240, 232, 0.08);
+  border-color: rgba(246, 240, 232, 0.4);
+}
+
 .bg-text {
   position: absolute;
-  top: 15%;
-  left: 5%;
-  font-size: 15vw;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
-  z-index: 0;
+  top: 13%;
+  right: -2%;
+  font-size: clamp(6rem, 16vw, 15rem);
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: rgba(246, 240, 232, 0.035);
+  z-index: -1;
   line-height: 0.8;
+  letter-spacing: -0.08em;
   white-space: nowrap;
   pointer-events: none;
 }
 
-/* Ensure the glass panel makes text readable without overlapping the car */
 .hero-content {
   position: relative;
   z-index: 10;
-  width: 45%;
-  padding-left: 4rem;
+  width: min(650px, 52vw);
+  padding-top: clamp(8rem, 15vh, 11rem);
+  margin-left: clamp(1.25rem, 12vw, 12rem);
+  padding-bottom: 4.5rem;
 }
 
 .main-panel {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  max-width: 600px;
   animation: slideIn 1s ease-out;
 }
 
 .hero-heading {
-  font-size: 4rem;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  max-width: 560px;
+  font-size: clamp(3.2rem, 6vw, 6.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.075em;
+  margin-bottom: 1.4rem;
+  font-weight: 600;
 }
 
 .hero-tagline {
-  font-size: 1.25rem;
-  margin-bottom: 2.5rem;
+  max-width: 420px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
 }
 
-.hero-actions {
+.choice-list {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 510px;
+}
+
+.choice-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 42px 1fr 20px;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(246, 240, 232, 0.14);
+  border-radius: 14px;
+  background: rgba(246, 240, 232, 0.035);
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.choice-card:hover,
+.choice-card:focus-visible {
+  background: rgba(246, 240, 232, 0.09);
+  border-color: rgba(246, 240, 232, 0.35);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.choice-card-featured {
+  border-color: color-mix(in srgb, var(--accent-color) 60%, transparent);
+  background: color-mix(in srgb, var(--accent-color) 8%, transparent);
+}
+
+.choice-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  background: rgba(255, 135, 0, 0.1);
+}
+
+.choice-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.choice-copy strong {
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+.choice-copy span {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.choice-arrow {
+  color: var(--text-muted);
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.choice-card:hover .choice-arrow {
+  color: var(--text-main);
+  transform: translateX(3px);
+}
+
+.hero-note {
+  margin-top: 1.7rem;
+  color: rgba(183, 173, 164, 0.72);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
 }
 
 .hero-car-wrapper {
   position: absolute;
-  right: -5%;
-  bottom: 0;
-  width: 65%;
-  height: 100vh;
+  right: -10%;
+  bottom: -2%;
+  width: 64%;
+  height: 88vh;
   display: flex;
   align-items: flex-end;
   z-index: 5;
-  mix-blend-mode: screen;
+  opacity: 0.68;
+  pointer-events: none;
 }
 
 .hero-car {
   width: 100%;
   height: auto;
-  max-height: 85vh;
+  max-height: 75vh;
   object-fit: contain;
   mix-blend-mode: screen;
+  filter: saturate(0.8) contrast(1.05);
 }
 
-/* Mask to blend non-transparent images seamlessly into the dark background */
 .car-gradient-mask {
   position: absolute;
   inset: 0;
-  background: none;
+  background: linear-gradient(90deg, var(--bg-dark) 0%, transparent 34%), linear-gradient(0deg, var(--bg-dark) 0%, transparent 18%);
   pointer-events: none;
+}
+
+.hero-art-caption {
+  position: absolute;
+  right: 14%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  color: rgba(246, 240, 232, 0.72);
+  text-align: right;
+}
+
+.hero-art-caption span,
+.hero-art-caption small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.hero-art-caption strong {
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hero-art-caption small {
+  font-size: 0.78rem;
 }
 
 @keyframes slideIn {
@@ -114,8 +261,16 @@
 }
 
 @media (max-width: 1024px) {
-  .hero-content { width: 100%; padding: 2rem; margin-top: 10vh; }
-  .hero-car-wrapper { width: 100%; right: 0; opacity: 0.3; z-index: 0; }
-  .bg-text { font-size: 20vw; top: 25%; }
-  .hero-heading { font-size: 3rem; }
+  .hero-content { width: min(620px, 72vw); padding-top: 9rem; margin-left: 8vw; }
+  .hero-car-wrapper { width: 75%; right: -18%; opacity: 0.42; }
+  .hero-art-caption { right: 18%; bottom: 8%; }
+}
+
+@media (max-width: 620px) {
+  .top-nav { align-items: flex-start; }
+  .status-bar { max-width: 46%; flex-wrap: wrap; justify-content: flex-end; text-align: right; gap: 0.35rem; }
+  .change-team-button { margin-left: 0; }
+  .hero-content { width: auto; margin: 0; padding: 8.5rem 1.25rem 4.5rem; }
+  .hero-heading { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .hero-car-wrapper { display: none; }
 }

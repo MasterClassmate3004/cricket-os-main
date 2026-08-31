@@ -8,12 +8,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
-  background-color: rgba(20, 20, 20, 0.45);
-  backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(23, 22, 20, 0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(246, 240, 232, 0.1);
   z-index: 9999;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
   color: var(--text-main);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
@@ -29,31 +29,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 3px;
   flex: 1;
 }
 
 .os-topbar-app {
-  width: 40px;
+  min-width: 40px;
   height: 40px;
+  padding: 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 10px;
   background-color: transparent;
-  color: #fff;
+  color: var(--text-muted);
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
 }
 
 .os-topbar-app:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(246, 240, 232, 0.08);
+  color: var(--text-main);
 }
 
 .os-topbar-app.active {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 135, 0, 0.12);
   color: var(--accent-color);
+}
+
+.os-topbar-app-label {
+  margin-left: 0.4rem;
+  font-size: 0.72rem;
+  white-space: nowrap;
 }
 
 .os-topbar-app-dot {
@@ -66,18 +74,20 @@
 }
 
 .os-topbar-brand {
-  font-weight: 700;
+  font-weight: 650;
   color: var(--text-main);
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 4px 0;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.os-topbar-team {
+.os-topbar-following {
+  padding-left: 0.7rem;
+  margin-left: 0.15rem;
+  border-left: 1px solid rgba(246, 240, 232, 0.18);
   color: var(--text-muted);
+  font-weight: 400;
 }
 
 .os-topbar-right {
@@ -90,9 +100,8 @@
 
 .os-topbar-time,
 .os-topbar-temp {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 4px 12px;
-  border-radius: 12px;
+  color: var(--text-muted);
+  padding: 4px 0;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -101,13 +110,13 @@
 .os-topbar-btn {
   background-color: transparent;
   color: var(--text-main);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 4px 12px;
-  border-radius: 12px;
+  border: 1px solid rgba(246, 240, 232, 0.2);
+  padding: 7px 11px;
+  border-radius: 9px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -119,7 +128,18 @@
 }
 
 .os-topbar-btn.danger:hover {
-  background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+  background-color: color-mix(in srgb, var(--accent-color) 16%, transparent);
   border-color: var(--accent-color);
   color: var(--accent-color);
+}
+
+@media (max-width: 800px) {
+  .os-topbar { padding: 0 12px; }
+  .os-topbar-center { justify-content: flex-end; }
+  .os-topbar-app-label { display: none; }
+  .os-topbar-following,
+  .os-topbar-time { display: none; }
+  .os-topbar-right { flex: 0 0 auto; }
+  .os-topbar-left { flex: 0 0 auto; }
+  .os-topbar-btn span { display: none; }
 }
