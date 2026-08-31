@@ -2,27 +2,34 @@ import './CalendarApp.css';
 
 const TEAM_COLORS = {
   mercedes: '#27F4D2',
-  ferrari: '#E80020'
+  ferrari: '#E8002D',
+  mclaren: '#FF8000',
+  redbull: '#3671C6',
+  aston: '#229971',
+  alpine: '#FF87BC',
+  williams: '#005AFF',
+  audi: '#F40000',
+  haas: '#B6BABD'
 };
 
 const RACES_2026 = [
   { round: 1, country: 'Australia', track: 'Melbourne', date: '06-08 MAR', completed: true, winner: 'George Russell', team: 'mercedes' },
   { round: 2, country: 'China', track: 'Shanghai', date: '13-15 MAR', completed: true, winner: 'Kimi Antonelli', team: 'mercedes' },
   { round: 3, country: 'Japan', track: 'Suzuka', date: '27-29 MAR', completed: true, winner: 'Kimi Antonelli', team: 'mercedes' },
-  { round: 4, country: 'Bahrain', track: 'Sakhir', date: '10-12 APR', completed: true, status: 'Cancelled' },
   { round: 5, country: 'Saudi Arabia', track: 'Jeddah', date: '17-19 APR', completed: true, status: 'Cancelled' },
   { round: 6, country: 'Miami', track: 'Miami', date: '01-03 MAY', completed: true, winner: 'Kimi Antonelli', team: 'mercedes' },
   { round: 7, country: 'Canada', track: 'Montreal', date: '22-24 MAY', completed: true, winner: 'Kimi Antonelli', team: 'mercedes' },
   { round: 8, country: 'Monaco', track: 'Monaco', date: '05-07 JUN', completed: true, winner: 'Kimi Antonelli', team: 'mercedes' },
   { round: 9, country: 'Spain', track: 'Barcelona - Catalunya', date: '12-14 JUN', completed: true, winner: 'Lewis Hamilton', team: 'ferrari' },
   { round: 10, country: 'Austria', track: 'Spielberg', date: '26-28 JUN', completed: true, winner: 'George Russell', team: 'mercedes' },
-  { round: 11, country: 'Great Britain', track: 'Silverstone', date: '03-05 JUL', completed: false },
-  { round: 12, country: 'Belgium', track: 'Spa-Francorchamps', date: '17-19 JUL', completed: false },
-  { round: 13, country: 'Hungary', track: 'Budapest', date: '24-26 JUL', completed: false },
-  { round: 14, country: 'Netherlands', track: 'Zandvoort', date: '21-23 AUG', completed: false },
+  { round: 11, country: 'Great Britain', track: 'Silverstone', date: '03-05 JUL', completed: true, winner: 'Lando Norris', team: 'mclaren' },
+  { round: 12, country: 'Belgium', track: 'Spa-Francorchamps', date: '17-19 JUL', completed: true, winner: 'Max Verstappen', team: 'redbull' },
+  { round: 13, country: 'Hungary', track: 'Budapest', date: '24-26 JUL', completed: true, winner: 'Oscar Piastri', team: 'mclaren' },
+  { round: 14, country: 'Netherlands', track: 'Zandvoort', date: '21-23 AUG', completed: true, winner: 'Lando Norris', team: 'mclaren' },
   { round: 15, country: 'Italy', track: 'Monza', date: '04-06 SEP', completed: false },
   { round: 16, country: 'Spain', track: 'Madrid', date: '11-13 SEP', completed: false },
   { round: 17, country: 'Azerbaijan', track: 'Baku', date: '25-27 SEP', completed: false },
+  { round: 4, country: 'Malaysia (Bahrain GP)', track: 'Sepang', date: '02-04 OCT', completed: false },
   { round: 18, country: 'Singapore', track: 'Singapore', date: '09-11 OCT', completed: false },
   { round: 19, country: 'United States', track: 'Austin', date: '23-25 OCT', completed: false },
   { round: 20, country: 'Mexico', track: 'Mexico City', date: '30 OCT-01 NOV', completed: false },
@@ -38,7 +45,7 @@ export default function CalendarApp() {
       <div className="calendar-header">
         <h2>2026 RACE CALENDAR</h2>
         <div className="season-progress">
-          ROUND 11 OF 24
+          ROUND 15 OF 24
         </div>
       </div>
       <div className="race-list">
