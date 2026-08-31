@@ -67,6 +67,11 @@ export default function F1WikiApp({ team }) {
   };
 
   const currentArticle = currentPage ? wikiData[currentPage] : null;
+  const stats = currentArticle?.stats || {
+    wins: currentArticle?.wins || '0',
+    podiums: currentArticle?.podiums || '0',
+    poles: currentArticle?.poles || null
+  };
 
   return (
     <div className="wiki-app" style={{ '--accent-color': team?.accent || '#ff4d4d' }}>
@@ -227,16 +232,16 @@ export default function F1WikiApp({ team }) {
                   </div>
                   <div className="wiki-table-row">
                     <div className="wiki-table-label">Grand Prix Wins</div>
-                    <div className="wiki-table-value">{currentArticle.stats.wins}</div>
+                    <div className="wiki-table-value">{stats.wins}</div>
                   </div>
                   <div className="wiki-table-row">
                     <div className="wiki-table-label">Podium Finishes</div>
-                    <div className="wiki-table-value">{currentArticle.stats.podiums}</div>
+                    <div className="wiki-table-value">{stats.podiums}</div>
                   </div>
-                  {currentArticle.stats.poles && (
+                  {stats.poles && (
                     <div className="wiki-table-row">
                       <div className="wiki-table-label">Pole Positions</div>
-                      <div className="wiki-table-value">{currentArticle.stats.poles}</div>
+                      <div className="wiki-table-value">{stats.poles}</div>
                     </div>
                   )}
                 </div>
