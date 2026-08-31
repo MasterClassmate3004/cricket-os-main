@@ -1,6 +1,6 @@
 export const drivers2026 = {
   1: { name: "Lando Norris", team: "McLaren F1 Team", color: "#FF8700" },
-  2: { name: "Arvid Lindblad", team: "Visa Cash App RB", color: "#6692FF" },
+  2: { name: "Arvid Lindblad", team: "Racing Bulls", color: "#6692FF" },
   3: { name: "Max Verstappen", team: "Red Bull Racing", color: "#3671C6" },
   5: { name: "Gabriel Bortoleto", team: "Audi F1 Team", color: "#F40000" },
   6: { name: "Isack Hadjar", team: "Red Bull Racing", color: "#3671C6" },
@@ -12,7 +12,7 @@ export const drivers2026 = {
   18: { name: "Lance Stroll", team: "Aston Martin Aramco F1 Team", color: "#229971" },
   23: { name: "Alex Albon", team: "Williams Racing", color: "#005AFF" },
   27: { name: "Nico Hulkenberg", team: "Audi F1 Team", color: "#F40000" },
-  30: { name: "Liam Lawson", team: "Visa Cash App RB", color: "#6692FF" },
+  30: { name: "Liam Lawson", team: "Racing Bulls", color: "#6692FF" },
   31: { name: "Esteban Ocon", team: "MoneyGram Haas F1 Team", color: "#B6BABD" },
   43: { name: "Franco Colapinto", team: "BWT Alpine F1 Team", color: "#FF87BC" },
   44: { name: "Lewis Hamilton", team: "Scuderia Ferrari", color: "#E8002D" },

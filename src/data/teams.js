@@ -126,7 +126,7 @@ export const teams = [
         ]
     },
     { 
-        id: 'vcarb',
+        id: 'racingbulls',
         name: 'Racing Bulls', 
         primary: '#00293F', 
         accent: '#FFFFFF', 

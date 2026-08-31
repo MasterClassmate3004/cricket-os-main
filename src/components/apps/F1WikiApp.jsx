@@ -165,7 +165,7 @@ export default function F1WikiApp({ team }) {
                   <button onClick={() => navigateTo('audi')}>Audi</button>
                   <button onClick={() => navigateTo('alpine')}>Alpine</button>
                   <button onClick={() => navigateTo('williams')}>Williams</button>
-                  <button onClick={() => navigateTo('vcarb')}>VCARB</button>
+                  <button onClick={() => navigateTo('racingbulls')}>Racing Bulls</button>
                   <button onClick={() => navigateTo('haas')}>Haas</button>
                   <button onClick={() => navigateTo('cadillac')}>Cadillac</button>
                 </div>

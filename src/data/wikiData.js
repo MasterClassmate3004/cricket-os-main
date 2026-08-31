@@ -176,11 +176,11 @@ export const wikiData = {
     bio: 'Williams Racing is an iconic British Formula One constructor founded by Sir Frank Williams and Sir Patrick Head. Williams dominated the 1980s and 1990s with legendary designs. Backed by Dorilton Capital and led by James Vowles, Williams is on a steady upward trajectory in 2026, boasting one of the strongest driver pairings on the grid in Carlos Sainz and Alex Albon.',
     history: 'From their first win in 1979 to championship runs with Alan Jones, Keke Rosberg, Nelson Piquet, Nigel Mansell, Alain Prost, Damon Hill, and Jacques Villeneuve, Williams remains a historical titan. Vowles\' restructuring aims to return this independent squad back to modern frontrunner status.'
   },
-  vcarb: {
+  racingbulls: {
     type: 'team',
-    name: 'Visa Cash App RB',
-    fullName: 'Visa Cash App RB Formula One Team',
-    logoUrl: '/logos/vcarb.png',
+    name: 'Racing Bulls',
+    fullName: 'Racing Bulls F1 Team',
+    logoUrl: '/logos/racing-bulls.png',
     country: 'Italy',
     base: 'Faenza, Ravenna, Italy / Milton Keynes, UK',
     principal: 'Laurent Mekies',
@@ -195,8 +195,8 @@ export const wikiData = {
     },
     drivers: ['Arvid Lindblad', 'Liam Lawson'],
     accentColor: '#6692FF',
-    bio: 'Visa Cash App RB (VCARB) is the sister Formula One team of Red Bull Racing, acting as a high-performance launchpad for Red Bull\'s elite junior program. Operating out of Faenza and Milton Keynes, VCARB enters 2026 under team principal Laurent Mekies with a young lineup composed of Kiwi talent Liam Lawson and British teenager Arvid Lindblad.',
-    history: 'Originally Minardi, Red Bull purchased the team in late 2005, running it as Scuderia Toro Rosso, then Scuderia AlphaTauri, before rebranding to VCARB in 2024. The team claimed two historic wins (Vettel in 2008, Gasly in 2020) and continues its close technical collaboration with Red Bull Powertrains.'
+    bio: 'Racing Bulls is the sister Formula One team of Red Bull Racing, acting as a high-performance launchpad for Red Bull\'s elite junior program. Operating out of Faenza and Milton Keynes, Racing Bulls enters 2026 under team principal Laurent Mekies with a young lineup composed of Kiwi talent Liam Lawson and British teenager Arvid Lindblad.',
+    history: 'Originally Minardi, Red Bull purchased the team in late 2005, running it as Scuderia Toro Rosso, then Scuderia AlphaTauri, before rebranding to Racing Bulls. The team claimed two historic wins (Vettel in 2008, Gasly in 2020) and continues its close technical collaboration with Red Bull Powertrains.'
   },
   haas: {
     type: 'team',
@@ -264,14 +264,14 @@ export const wikiData = {
     name: 'Arvid Lindblad',
     code: 'LIN',
     number: '2',
-    teamName: 'Visa Cash App RB',
-    teamId: 'vcarb',
+    teamName: 'Racing Bulls',
+    teamId: 'racingbulls',
     country: 'United Kingdom',
     wins: '0',
     podiums: '0',
     championships: '0',
     accentColor: '#6692FF',
-    bio: 'Arvid Lindblad is a British racing driver competing in Formula One for Visa Cash App RB. A highly decorated graduate of the Red Bull Junior Team, Lindblad is one of the youngest drivers to enter the sport, securing a direct promotion to VCARB for the 2026 season following standout performances in Formula 3 and Formula 2.',
+    bio: 'Arvid Lindblad is a British racing driver competing in Formula One for Racing Bulls. A highly decorated graduate of the Red Bull Junior Team, Lindblad is one of the youngest drivers to enter the sport, securing a direct promotion to the team for the 2026 season following standout performances in Formula 3 and Formula 2.',
     history: 'Born in London, Lindblad dominated international karting before entering single-seaters. Under Red Bull\'s driver development scheme, he demonstrated rapid adaptability, earning team principal Laurent Mekies\' backing for their 2026 regulation campaign.'
   },
   verstappen: {
@@ -444,15 +444,15 @@ export const wikiData = {
     name: 'Liam Lawson',
     code: 'LAW',
     number: '30',
-    teamName: 'Visa Cash App RB',
-    teamId: 'vcarb',
+    teamName: 'Racing Bulls',
+    teamId: 'racingbulls',
     country: 'New Zealand',
     wins: '0',
     podiums: '0',
     championships: '0',
     accentColor: '#6692FF',
-    bio: 'Liam Lawson is a New Zealand racing driver competing for Visa Cash App RB. A product of the Red Bull Junior Team, Lawson earned widespread acclaim during his stand-in appearances in 2023, securing a full-time seat in the Red Bull family.',
-    history: 'Born in Hastings, Lawson competed in DTM and Super Formula, finishing runner-up. He scored points on his debut in Singapore 2023. In 2026, Lawson lead\'s VCARB\'s midfield campaign under Mekies.'
+    bio: 'Liam Lawson is a New Zealand racing driver competing for Racing Bulls. A product of the Red Bull Junior Team, Lawson earned widespread acclaim during his stand-in appearances in 2023, securing a full-time seat in the Red Bull family.',
+    history: 'Born in Hastings, Lawson competed in DTM and Super Formula, finishing runner-up. He scored points on his debut in Singapore 2023. In 2026, Lawson lead\'s Racing Bulls\' midfield campaign under Mekies.'
   },
   ocon: {
     type: 'driver',
