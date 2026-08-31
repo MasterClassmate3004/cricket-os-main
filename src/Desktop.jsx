@@ -2,13 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import TopBar from './Taskbar';
 import WindowFrame from './WindowFrame';
 import DesktopIcon from './Shortcut';
-import TelemetryApp from './apps/TelemetryApp';
-import CalendarApp from './apps/CalendarApp';
-import TeamInfoApp from './apps/TeamInfoApp';
-import CalculatorApp from './apps/CalculatorApp';
+import TelemetryApp from './TelemetryApp';
+import CalendarApp from './CalendarApp';
+import TeamInfoApp from './TeamInfoApp';
+import CalculatorApp from './CalculatorApp';
 import BootScreen from './Startup';
 import { Gauge, Flag, Calculator, Search, Sliders, ArrowLeft, ArrowRight, RefreshCw, BookOpen, User, Shield, Info } from 'lucide-react';
-import { wikiData } from '../data/wikiData';
+import { wikiData } from './wikiData';
 import './Desktop.css';
 
 export default function Desktop({ team, onExit }) {

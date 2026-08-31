@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { drivers2026 } from '../../data/drivers2026';
+import { drivers2026 } from './drivers2026';
 import './CalculatorApp.css';
 
 export default function CalculatorApp({ team }) {
