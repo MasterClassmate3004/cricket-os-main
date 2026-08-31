@@ -163,6 +163,11 @@ export default function F1WikiApp({ team }) {
                   <button onClick={() => navigateTo('redbull')}>Red Bull</button>
                   <button onClick={() => navigateTo('aston')}>Aston Martin</button>
                   <button onClick={() => navigateTo('audi')}>Audi</button>
+                  <button onClick={() => navigateTo('alpine')}>Alpine</button>
+                  <button onClick={() => navigateTo('williams')}>Williams</button>
+                  <button onClick={() => navigateTo('vcarb')}>VCARB</button>
+                  <button onClick={() => navigateTo('haas')}>Haas</button>
+                  <button onClick={() => navigateTo('cadillac')}>Cadillac</button>
                 </div>
               </div>
 
@@ -175,6 +180,12 @@ export default function F1WikiApp({ team }) {
                   <button onClick={() => navigateTo('antonelli')}>Kimi Antonelli</button>
                   <button onClick={() => navigateTo('leclerc')}>Charles Leclerc</button>
                   <button onClick={() => navigateTo('alonso')}>Fernando Alonso</button>
+                  <button onClick={() => navigateTo('sainz')}>Carlos Sainz</button>
+                  <button onClick={() => navigateTo('piastri')}>Oscar Piastri</button>
+                  <button onClick={() => navigateTo('albon')}>Alex Albon</button>
+                  <button onClick={() => navigateTo('bortoleto')}>Gabriel Bortoleto</button>
+                  <button onClick={() => navigateTo('ocon')}>Esteban Ocon</button>
+                  <button onClick={() => navigateTo('bearman')}>Oliver Bearman</button>
                 </div>
               </div>
             </div>

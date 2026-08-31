@@ -1,5 +1,6 @@
 export const drivers2026 = {
   1: { name: "Lando Norris", team: "McLaren F1 Team", color: "#FF8700" },
+  2: { name: "Arvid Lindblad", team: "Visa Cash App RB", color: "#6692FF" },
   3: { name: "Max Verstappen", team: "Red Bull Racing", color: "#3671C6" },
   5: { name: "Gabriel Bortoleto", team: "Audi F1 Team", color: "#F40000" },
   6: { name: "Isack Hadjar", team: "Red Bull Racing", color: "#3671C6" },
