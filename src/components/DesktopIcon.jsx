@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import './DesktopIcon.css';
 
 export default function DesktopIcon({ 
   id, 
@@ -39,7 +38,6 @@ export default function DesktopIcon({
         dragRef.current.moved = true;
       }
 
-      // Constrain dragging bounds within standard screen boundaries
       const nextX = Math.max(10, Math.min(window.innerWidth - 100, dragRef.current.initX + dx));
       const nextY = Math.max(10, Math.min(window.innerHeight - 150, dragRef.current.initY + dy));
 

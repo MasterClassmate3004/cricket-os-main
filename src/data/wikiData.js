@@ -1,5 +1,4 @@
 export const wikiData = {
-  // TEAMS
   mclaren: {
     type: 'team',
     name: 'McLaren F1 Team',
@@ -243,7 +242,6 @@ export const wikiData = {
     history: 'General Motors formally registered Cadillac as an F1 engine and team constructor in the mid-2020s. Partnering with seasoned sporting executives, their 2026 debut represents a major milestone in expanding American manufacturing dominance onto the global motorsport stage.'
   },
 
-  // DRIVERS
   norris: {
     type: 'driver',
     name: 'Lando Norris',
