@@ -1,0 +1,437 @@
+.settings-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Steering Wheel Top Display */
+.wheel-display {
+  background-color: #050505;
+  border: 2px solid #222;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.display-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.display-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.stat-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.stat-val.highlight {
+  color: var(--accent-color, #ff4d4d);
+  text-shadow: 0 0 8px var(--accent-color);
+}
+
+.stat-val.active {
+  color: #39FF14;
+  text-shadow: 0 0 8px #39FF14;
+}
+
+.stat-val.inactive {
+  color: #444;
+}
+
+.stat-val.alert {
+  color: #FF2400;
+  text-shadow: 0 0 8px #FF2400;
+  animation: engTempFlash 1s infinite alternate;
+}
+
+@keyframes engTempFlash {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* LED Rev Lights */
+.rev-lights {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-top: 1px solid #151515;
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #222;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.light.green.active {
+  background-color: #00FF00;
+  box-shadow: 0 0 8px #00FF00, inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.light.red.active {
+  background-color: #FF0000;
+  box-shadow: 0 0 8px #FF0000, inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.light.blue.active {
+  background-color: #0000FF;
+  box-shadow: 0 0 8px #0000FF, inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Grid parameters */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  flex: 1;
+}
+
+.settings-card {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+}
+
+.settings-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.settings-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--accent-color, #ff4d4d);
+  letter-spacing: 1.5px;
+  margin: 0 0 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 8px;
+}
+
+.config-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.config-item:last-child {
+  margin-bottom: 0;
+}
+
+.config-label {
+  font-size: 11px;
+  color: #888;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Strat Buttons */
+.strat-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.strat-btn {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ccc;
+  padding: 8px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.strat-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.strat-btn.active {
+  background-color: var(--accent-color, #ff4d4d);
+  border-color: var(--accent-color, #ff4d4d);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+}
+
+/* MGU-K modes */
+.mguk-modes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.mguk-btn {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ccc;
+  padding: 6px;
+  font-size: 9px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.mguk-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.mguk-btn.active {
+  background-color: #fff;
+  border-color: #fff;
+  color: #000;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Brake balance slider */
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.slider-value {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-color, #ff4d4d);
+  font-weight: bold;
+}
+
+.wheel-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  margin: 10px 0;
+}
+
+.wheel-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-color, #ff4d4d);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent-color);
+  transition: transform 0.15s ease;
+}
+
+.wheel-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-endpoints {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #444;
+  font-weight: bold;
+}
+
+/* Differential controls */
+.diff-controls-row {
+  display: flex;
+  gap: 16px;
+}
+
+.diff-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dial-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.wheel-slider.mini {
+  flex: 1;
+  margin: 0;
+}
+
+.dial-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  width: 18px;
+  text-align: center;
+}
+
+/* Bottom elements */
+.bottom-layout {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 20px;
+}
+
+.compound-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.tyre-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.tyre-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #888;
+  padding: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tyre-icon {
+  transition: transform 0.3s ease;
+}
+
+.tyre-btn:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.tyre-btn:hover .tyre-icon {
+  transform: rotate(45deg);
+}
+
+/* Compound Active States */
+.tyre-btn.soft.active {
+  border-color: #E8002D;
+  color: #E8002D;
+  background-color: rgba(232, 0, 45, 0.1);
+  box-shadow: 0 0 10px rgba(232, 0, 45, 0.2);
+}
+
+.tyre-btn.medium.active {
+  border-color: #FFCC00;
+  color: #FFCC00;
+  background-color: rgba(255, 204, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+}
+
+.tyre-btn.hard.active {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.tyre-btn.wet.active {
+  border-color: #005AFF;
+  color: #005AFF;
+  background-color: rgba(0, 90, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 90, 255, 0.2);
+}
+
+/* DRS Switch */
+.drs-toggle-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.drs-switch-wrap {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.drs-switch-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #666;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drs-switch-btn.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.drs-switch-btn.enabled.active {
+  background-color: #39FF14;
+  color: #000;
+  box-shadow: 0 0 8px #39FF14;
+}
+
+/* Footer alerts */
+.settings-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #555;
+  margin-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 12px;
+  flex-shrink: 0;
+}

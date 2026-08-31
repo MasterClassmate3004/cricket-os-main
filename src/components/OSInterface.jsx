@@ -7,17 +7,19 @@ import CalendarApp from './apps/CalendarApp';
 import TeamInfoApp from './apps/TeamInfoApp';
 import CalculatorApp from './apps/CalculatorApp';
 import F1WikiApp from './apps/F1WikiApp';
+import SettingsApp from './apps/SettingsApp';
 import BootScreen from './BootScreen';
-import { Activity, Calendar, Calculator, Globe } from 'lucide-react';
+import { Gauge, Flag, Calculator, Search, Sliders } from 'lucide-react';
 import './OSInterface.css';
 
 export default function OSInterface({ team, onExit }) {
   const APPS = [
-    { id: 'telemetry', label: 'Live Timing', icon: Activity, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
-    { id: 'calendar', label: 'Calendar', icon: Calendar, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
+    { id: 'telemetry', label: 'Live Timing', icon: Gauge, component: TelemetryApp, defaultPos: {x: 100, y: 50}, defaultSize: {width: 900, height: 600} },
+    { id: 'calendar', label: 'Calendar', icon: Flag, component: CalendarApp, defaultPos: {x: 150, y: 150}, defaultSize: {width: 500, height: 400} },
     { id: 'teaminfo', label: 'Team Info', iconUrl: team.logoUrl, component: TeamInfoApp, defaultPos: {x: 200, y: 100}, defaultSize: {width: 700, height: 500} },
     { id: 'calculator', label: 'Calculator', icon: Calculator, component: CalculatorApp, defaultPos: {x: 250, y: 100}, defaultSize: {width: 400, height: 550} },
-    { id: 'wiki', label: 'F1 Wiki', icon: Globe, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} }
+    { id: 'wiki', label: 'F1 Wiki', icon: Search, component: F1WikiApp, defaultPos: {x: 180, y: 120}, defaultSize: {width: 750, height: 500} },
+    { id: 'settings', label: 'ECU Settings', icon: Sliders, component: SettingsApp, defaultPos: {x: 220, y: 150}, defaultSize: {width: 600, height: 480} }
   ];
 
   const [selectedIcon, setSelectedIcon] = useState(null);

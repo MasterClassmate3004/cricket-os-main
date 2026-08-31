@@ -73,7 +73,7 @@ export const wikiData = {
     logoUrl: '/logos/red-bull-racing.png',
     country: 'Austria',
     base: 'Milton Keynes, Buckinghamshire, UK',
-    principal: 'Christian Horner',
+    principal: 'Laurent Mekies',
     established: '2005',
     debut: '2005 Australian Grand Prix',
     championships: '6 Constructors, 7 Drivers',
